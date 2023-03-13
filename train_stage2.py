@@ -27,6 +27,12 @@ def get_dataloader(conf):
         valset = DISFA(conf.dataset_path, train=False, fold=conf.fold, transform=image_test(crop_size=conf.crop_size), stage = 2)
         val_loader = DataLoader(valset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
 
+    elif conf.dataset == 'AffWild2':
+        trainset = AffWild2(conf.dataset_path, train=True, fold = conf.fold, transform=image_train(crop_size=conf.crop_size), crop_size=conf.crop_size, stage = 2)
+        train_loader = DataLoader(trainset, batch_size=conf.batch_size, shuffle=True, num_workers=conf.num_workers)
+        valset = AffWild2(conf.dataset_path, train=False, fold=conf.fold, transform=image_test(crop_size=conf.crop_size), stage = 2)
+        val_loader = DataLoader(valset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
+
     return train_loader, val_loader, len(trainset), len(valset)
 
 
@@ -81,6 +87,8 @@ def main(conf):
         dataset_info = BP4D_infolist
     elif conf.dataset == 'DISFA':
         dataset_info = DISFA_infolist
+    elif conf.dataset == 'AffWild2':
+        dataset_info = AffWild2_infolist
 
     start_epoch = 0
     # data

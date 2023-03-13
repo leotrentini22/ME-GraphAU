@@ -1,0 +1,3 @@
+dataset_path: 'data/AffWild2'
+num_classes: 12
+neighbor_num: 4

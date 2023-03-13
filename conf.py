@@ -14,7 +14,7 @@ import yaml
 
 parser = argparse.ArgumentParser(description='PyTorch Training')
 # Datasets
-parser.add_argument('--dataset', default="BP4D", type=str, help="experiment dataset BP4D / DISFA")
+parser.add_argument('--dataset', default="AffWild2", type=str, help="experiment dataset AffWild2")
 parser.add_argument('--N-fold', default=3, type=int, help="the ratio of train and validation data")
 parser.add_argument('-f','--fold', default=1, type=int, metavar='N', help='the fold of three folds cross-validation ')
 
@@ -85,16 +85,10 @@ def get_config():
 
     # args from argparser
     cfg = parser2dict()
-    if cfg.dataset == 'BP4D':
-        with open('config/BP4D_config.yaml', 'r') as f:
+    if cfg.dataset == 'AffWild2':
+        with open('config/AffWild2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
-
-    elif cfg.dataset == 'DISFA':
-        with open('config/DISFA_config.yaml', 'r') as f:
-            datasets_cfg = yaml.load(f)
-            datasets_cfg = edict(datasets_cfg)
-
     else:
         raise Exception("Unkown Datsets:",cfg.dataset)
 
