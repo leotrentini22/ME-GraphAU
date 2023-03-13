@@ -1,6 +1,6 @@
 import numpy as np
 
-list_path_prefix = '../data/BP4D/list/'
+list_path_prefix = '../data/AffWild2/list/'
 
 '''
 example of content in 'AffWild2_train_label_fold1.txt':
