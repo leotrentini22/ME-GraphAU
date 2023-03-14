@@ -14,7 +14,7 @@ import yaml
 
 parser = argparse.ArgumentParser(description='PyTorch Training')
 # Datasets
-parser.add_argument('--dataset', default='hybrid', type=str, choices=['BP4D','DISFA','hybrid'], help="experiment dataset BP4D / DISFA / hybrid Dataset")
+parser.add_argument('--dataset', default='AFFW-2', type=str, choices=['BP4D','DISFA','hybrid','AFFW-2'], help="experiment dataset BP4D / DISFA / hybrid Dataset")
 
 # Param
 parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 128)')
@@ -100,6 +100,11 @@ def get_config():
 
     elif cfg.dataset == 'hybrid':
         with open('config/hybrid_config.yaml', 'r') as f:
+            datasets_cfg = yaml.load(f)
+            datasets_cfg = edict(datasets_cfg)
+
+    elif cfg.dataset == 'AFFW-2':
+        with open('conf/AffWild2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
     else:

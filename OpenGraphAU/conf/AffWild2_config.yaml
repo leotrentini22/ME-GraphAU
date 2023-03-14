@@ -1,0 +1,3 @@
+dataset_path: '/work/vita/datasets/Aff-Wild2'
+num_classes: 12
+neighbor_num: 4

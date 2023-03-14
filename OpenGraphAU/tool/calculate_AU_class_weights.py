@@ -1,7 +1,7 @@
 import numpy as np
 import os
 
-list_path_prefix = '/home/luocheng/Datasets/AU_Datasets/list'
+list_path_prefix = '../data/AffWild2/list/'
 
 '''
 example of content in 'BP4D_train_label_fold1.txt':
@@ -11,7 +11,7 @@ example of content in 'BP4D_train_label_fold1.txt':
 '''
 
 
-imgs_AUoccur = np.loadtxt(os.path.join(list_path_prefix, 'hybrid_train_label.txt'))
+imgs_AUoccur = np.loadtxt(os.path.join(list_path_prefix, 'AffWild2_train_label.txt'))
 AUoccur_rate = np.zeros((1, imgs_AUoccur.shape[1]))
 
 for i in range(imgs_AUoccur.shape[1]):
@@ -21,5 +21,5 @@ for i in range(imgs_AUoccur.shape[1]):
 
 AU_weight = 1.0 / AUoccur_rate
 AU_weight = AU_weight / AU_weight.sum() * AU_weight.shape[1]
-np.savetxt(os.path.join(list_path_prefix, 'hybrid_train_weight.txt'), AU_weight, fmt='%f', delimiter='\t')
+np.savetxt(os.path.join(list_path_prefix, 'AffWild2_train_weight.txt'), AU_weight, fmt='%f', delimiter='\t')
 # print(AU_weight.shape)
