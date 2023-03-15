@@ -137,7 +137,7 @@ class Head(nn.Module):
 
 
 class MEFARG(nn.Module):
-    def __init__(self, num_main_classes = 27, num_sub_classes = 14, backbone='swin_transformer_base', neighbor_num=4, metric='dots'):
+    def __init__(self, num_main_classes = 27, num_sub_classes = 14, backbone='resnet50', neighbor_num=4, metric='dots'):
         super(MEFARG, self).__init__()
         if 'transformer' in backbone:
             if backbone == 'swin_transformer_tiny':
