@@ -19,7 +19,7 @@ __all__ = ['ResNet', 'resnet18', 'resnet34', 'resnet50', 'resnet101', 'resnet152
 # }
 
 
-models_dir = os.path.expanduser('checkpoints')
+models_dir = '/home/trentini/checkpoints'
 model_name = {
     'resnet18': 'resnet18-5c106cde.pth',
     'resnet34': 'resnet34-333f7ec4.pth',
