@@ -16,7 +16,8 @@ def main(conf):
     img_path = conf.input
 
 
-    net = MEFARG(num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
+    net = MEFARG()
+    #num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric
 
     # resume
     if conf.resume != '':

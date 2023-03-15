@@ -916,19 +916,19 @@ for i in range(new_dataset_test_label_list.shape[0]):
             main_au_index = sub_list[ (j - 27) // 2]
             new_dataset_test_label_list[i, main_au_index] = 1
 
-np.savetxt('Datasets/hybrid_dataset/list/hybrid_train_label.txt', new_dataset_train_label_list ,fmt='%d', delimiter=' ')
-np.savetxt('Datasets/hybrid_dataset/list/hybrid_val_label.txt', new_dataset_val_label_list ,fmt='%d', delimiter=' ')
-np.savetxt('Datasets/hybrid_dataset/list/hybrid_test_label.txt', new_dataset_test_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('ME-GraphAU/data/AffWild2/list/AffWild2_train_label.txt', new_dataset_train_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('ME-GraphAU/data/AffWild2/list/AffWild2_val_label.txt', new_dataset_val_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('ME-GraphAU/data/AffWild2/list/AffWild2_test_label.txt', new_dataset_test_label_list ,fmt='%d', delimiter=' ')
 
-with open('Datasets/hybrid_dataset/list/hybrid_train_img_path.txt', 'w+') as f:
+with open('ME-GraphAU/data/AffWild2/list/AffWild2_train_img_path.txt', 'w+') as f:
     for line in new_dataset_train_img_list:
         f.write(line)
 
-with open('Datasets/hybrid_dataset/list/hybrid_val_img_path.txt', 'w+') as f:
+with open('ME-GraphAU/data/AffWild2/list/AffWild2_val_img_path.txt', 'w+') as f:
     for line in new_dataset_val_img_list:
         f.write(line)
 
-with open('Datasets/hybrid_dataset/list/hybrid_test_img_path.txt', 'w+') as f:
+with open('ME-GraphAU/data/AffWild2/list/AffWild2_test_img_path.txt', 'w+') as f:
     for line in new_dataset_test_img_list:
         f.write(line)
 
