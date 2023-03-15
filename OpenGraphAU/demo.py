@@ -10,7 +10,7 @@ from conf import get_config,set_logger,set_outdir,set_env
 
 
 def main(conf):
-    dataset_info = hybrid_prediction_infolist
+    dataset_info = AffWild2_prediction_infolist
 
     # data
     img_path = conf.input
