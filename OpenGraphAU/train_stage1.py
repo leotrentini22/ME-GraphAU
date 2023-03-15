@@ -15,9 +15,9 @@ from conf import get_config,set_logger,set_outdir,set_env
 
 def get_dataloader(conf):
     print('==> Preparing data...')
-    trainset = HybridDataset(conf.dataset_path, phase='train', transform=image_train(crop_size=conf.crop_size), stage = 1)
+    trainset = AffWild2Dataset(conf.dataset_path, phase='train', transform=image_train(crop_size=conf.crop_size), stage = 1)
     train_loader = DataLoader(trainset, batch_size=conf.batch_size, shuffle=True, num_workers=conf.num_workers)
-    valset = HybridDataset(conf.dataset_path, phase='val', transform=image_eval(crop_size=conf.crop_size), stage = 1)
+    valset = AffWild2Dataset(conf.dataset_path, phase='val', transform=image_eval(crop_size=conf.crop_size), stage = 1)
     val_loader = DataLoader(valset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
     return train_loader, val_loader, len(trainset), len(valset)
 
@@ -64,7 +64,7 @@ def val(net,val_loader,criterion):
 
 def main(conf):
 
-    dataset_info = hybrid_infolist
+    dataset_info = AffWild2_infolist
 
 
     start_epoch = 0

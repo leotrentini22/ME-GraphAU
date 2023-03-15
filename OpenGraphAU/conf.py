@@ -14,7 +14,7 @@ import yaml
 
 parser = argparse.ArgumentParser(description='PyTorch Training')
 # Datasets
-parser.add_argument('--dataset', default='AFFW-2', type=str, choices=['BP4D','DISFA','hybrid','AFFW-2'], help="experiment dataset BP4D / DISFA / hybrid Dataset")
+parser.add_argument('--dataset', default='AFFW-2', type=str, choices=['BP4D','DISFA','hybrid','AFFW-2'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AFFW-2")
 
 # Param
 parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 128)')

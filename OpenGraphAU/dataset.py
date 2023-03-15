@@ -24,7 +24,7 @@ def default_loader(path):
     return pil_loader(path)
 
 
-class HybridDataset(Dataset):
+class AffWild2(Dataset):
     def __init__(self, root_path, phase='train', transform=None, stage=1, loader=default_loader):
 
         assert stage>0 and stage <=2, 'The stage num must be restricted from 1 to 2'
@@ -38,36 +38,36 @@ class HybridDataset(Dataset):
         self.img_folder_path = os.path.join(root_path,'img')
         if self._phase == 'train':
             # img
-            train_image_list_path = os.path.join(root_path, 'list', 'hybrid_train_img_path.txt')
+            train_image_list_path = os.path.join(root_path, 'list', 'AffWild2_train_img_path.txt')
             train_image_list = open(train_image_list_path).readlines()
             # img labels
-            train_label_list_path = os.path.join(root_path, 'list', 'hybrid_train_label.txt')
+            train_label_list_path = os.path.join(root_path, 'list', 'AffWild2_train_label.txt')
             train_label_list = np.loadtxt(train_label_list_path)
 
             # AU relation
             if self._stage == 2:
-                au_relation_list_path = os.path.join(root_path, 'list', 'hybrid_train_AU_relation.txt')
+                au_relation_list_path = os.path.join(root_path, 'list', 'AffWild2_train_AU_relation.txt')
                 au_relation_list = np.loadtxt(au_relation_list_path)
                 self.data_list = make_dataset(train_image_list, train_label_list, au_relation_list)
             else:
                 self.data_list = make_dataset(train_image_list, train_label_list)
         elif self._phase == 'val':
             # img
-            eval_image_list_path = os.path.join(root_path, 'list', 'hybrid_val_img_path.txt')
+            eval_image_list_path = os.path.join(root_path, 'list', 'AffWild2_val_img_path.txt')
             eval_image_list = open(eval_image_list_path).readlines()
 
             # img labels
-            eval_label_list_path = os.path.join(root_path, 'list', 'hybrid_val_label.txt')
+            eval_label_list_path = os.path.join(root_path, 'list', 'AffWild2_val_label.txt')
             eval_label_list = np.loadtxt(eval_label_list_path)
             self.data_list = make_dataset(eval_image_list, eval_label_list)
 
         else:
             # img
-            eval_image_list_path = os.path.join(root_path, 'list', 'hybrid_test_img_path.txt')
+            eval_image_list_path = os.path.join(root_path, 'list', 'AffWild2_test_img_path.txt')
             eval_image_list = open(eval_image_list_path).readlines()
 
             # img labels
-            eval_label_list_path = os.path.join(root_path, 'list', 'hybrid_test_label.txt')
+            eval_label_list_path = os.path.join(root_path, 'list', 'AffWild2_test_label.txt')
             eval_label_list = np.loadtxt(eval_label_list_path)
             self.data_list = make_dataset(eval_image_list, eval_label_list)
 
