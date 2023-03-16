@@ -491,6 +491,6 @@ class WeightedAsymmetricLoss(nn.Module):
             return loss.mean()
 
 if __name__=="__main__":
-    datainfo = DISFA_infolist
+    datainfo = AffWild2_infolist
     f1 = [0.5,0.2,0.4,0.3,0.2,0.2,0.1,0.2]
-    print(DISFA_infolist(f1))
+    print(AffWild2_infolist(f1))

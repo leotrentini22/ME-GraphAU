@@ -14,7 +14,7 @@ from conf import get_config,set_logger,set_outdir,set_env
 
 def get_dataloader(conf):
     print('==> Preparing data...')
-    testset = HybridDataset(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
+    testset = AffWild2Dataset(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
                              stage=1)
     test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
     return test_loader, len(testset)
@@ -41,7 +41,7 @@ def test(net, test_loader):
 
 
 def main(conf):
-    dataset_info = hybrid_infolist
+    dataset_info = AffWild2_infolist
 
     # data
     test_loader, test_data_num = get_dataloader(conf)

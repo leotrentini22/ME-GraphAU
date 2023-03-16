@@ -14,7 +14,7 @@ import yaml
 
 parser = argparse.ArgumentParser(description='PyTorch Training')
 # Datasets
-parser.add_argument('--dataset', default='AFFW-2', type=str, choices=['BP4D','DISFA','hybrid','AFFW-2'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AFFW-2")
+parser.add_argument('--dataset', default='AffWild2', type=str, choices=['BP4D','DISFA','hybrid','AffWild2'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AffWild2")
 
 # Param
 parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 128)')
@@ -27,7 +27,7 @@ parser.add_argument('--crop-size', default=224, type=int, help="crop size of tra
 parser.add_argument('--evaluate', action='store_true', help='evaluation mode')
 
 # Network and Loss
-parser.add_argument('--arc', default='swin_transformer_base', type=str, choices=['resnet18', 'resnet50', 'resnet101',
+parser.add_argument('--arc', default='resnet50', type=str, choices=['resnet18', 'resnet50', 'resnet101',
                     'swin_transformer_tiny', 'swin_transformer_small', 'swin_transformer_base'], help="backbone architecture resnet / swin_transformer")
 parser.add_argument('--metric', default="dots", type=str, help="metric for graph top-K nearest neighbors selection")
 parser.add_argument('--lam', default=0.001, type=float, help="lambda for adjusting loss")
@@ -103,7 +103,7 @@ def get_config():
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
 
-    elif cfg.dataset == 'AFFW-2':
+    elif cfg.dataset == 'AffWild2':
         with open('conf/AffWild2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)

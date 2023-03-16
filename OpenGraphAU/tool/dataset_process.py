@@ -744,10 +744,13 @@ print("processing AffWild2------------------------------------------------------
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 
 
-list_path_prefix = 'Datasets/hybrid_dataset/AffWild2/list'
+list_path_prefix = 'data/AffWild2/list' '/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
 
-train_path = 'TrainFromTrain_Set'
-val_path = 'ValFromTrain_Set'
+#data/AffWild2/list
+#/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/
+
+train_path ='Train_Set' #'TrainFromTrain_Set'
+val_path = 'Validation_Set' #'ValFromTrain_Set'
 test_path = 'Validation_Set'
 
 label_root = 'AffWild2/list/AU_Set'
