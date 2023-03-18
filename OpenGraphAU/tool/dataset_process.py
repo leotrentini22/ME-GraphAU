@@ -744,7 +744,7 @@ print("processing AffWild2------------------------------------------------------
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 
 
-list_path_prefix = 'data/AffWild2/list' '/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
+list_path_prefix = 'data/AffWild2/list' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
 
 #data/AffWild2/list
 #/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/
