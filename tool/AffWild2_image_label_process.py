@@ -8,13 +8,13 @@ print("processing AFFW-2--------------------------------------------------------
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 
 
-list_path_prefix = '/work/vita/datasets/Aff-Wild2/Third_ABAW_annotations/AU_Detection_Challenge'
+list_path_prefix = '/work/vita/datasets/Aff-Wild2/Third_ABAW_annotations/AU_Detection_Challenge/'
 
 train_path = 'Train_Set'
-val_path = 'Train_Set'
-test_path = 'Test_Set'
+val_path = 'Validation_Set'
+test_path = 'Validation_Set'
 
-label_root = 'AFFW-2/list/AU_Set'
+label_root = '/work/vita/datasets/Aff-Wild2/Third_ABAW_annotations/AU_Detection_Challenge/'
 
 train_list = os.listdir(os.path.join(label_root, train_path))
 
