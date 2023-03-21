@@ -1,3 +1,3 @@
-dataset_path: '/work/vita/datasets/Aff-Wild2'
+dataset_path: '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2' #'/work/vita/datasets/Aff-Wild2/'
 num_classes: 12
 neighbor_num: 4

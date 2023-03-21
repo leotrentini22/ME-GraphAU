@@ -68,7 +68,7 @@ class AffWild2(Dataset):
 
             # img labels
             eval_label_list_path = os.path.join(root_path, 'list', 'AffWild2_test_label.txt')
-            eval_label_list = np.loadtxt(eval_label_list_path)
+            eval_label_list = np.loadtxt(eval_label_list_path)  #np.loadtxt(eval_label_list_path)  -> to change when we understand how to do it automatically
             self.data_list = make_dataset(eval_image_list, eval_label_list)
 
     def __getitem__(self, index):

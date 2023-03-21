@@ -2,17 +2,17 @@ import os
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader
-from tqdm import tqdm
-import logging
+from torch.utils.data import DataLoader #questo cambia
+from tqdm import tqdm #questo cambia
+import logging #qc
 
 from model.ANFL import MEFARG
-from dataset import *
+from dataset import * #questo cambia
 from utils import *
 from conf import get_config,set_logger,set_outdir,set_env
 
 
-def get_dataloader(conf):
+def get_dataloader(conf):  #qc
     print('==> Preparing data...')
     testset = AffWild2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
                              stage=1)
@@ -41,9 +41,9 @@ def test(net, test_loader):
 
 
 def main(conf):
-    dataset_info = AffWild2_infolist
+    dataset_info = AffWild2_infolist  #questo cambia
 
-    # data
+    # data     #questo cambia
     test_loader, test_data_num = get_dataloader(conf)
     logging.info("[ test_data_num: {} ]".format( test_data_num))
     net = MEFARG(num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
