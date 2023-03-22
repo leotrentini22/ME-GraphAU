@@ -744,7 +744,7 @@ print("processing AffWild2------------------------------------------------------
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 
 
-list_path_prefix = 'data/AffWild2/list' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
+list_path_prefix = 'data/AffWild2/list/' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
 
 #data/AffWild2/list
 #/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/
@@ -753,7 +753,7 @@ train_path ='Train_Set' #'TrainFromTrain_Set'
 val_path = 'Validation_Set' #'ValFromTrain_Set'
 test_path = 'Validation_Set'
 
-label_root = 'AffWild2/list/AU_Set'
+label_root = '/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/'
 
 train_list = os.listdir(os.path.join(label_root, train_path))
 
@@ -807,14 +807,14 @@ AffWild2_train_image_label = np.zeros((au_labels.shape[0], len(total_AUs))) - 1
 for i, au in enumerate(au_ids):
     au = str(au)
     index = total_AUs.index(au)
-    AFFW_train_image_label[:, index] = au_labels[:, i]
+    AffWild2_train_image_label[:, index] = au_labels[:, i]
 
 with open(train_img_path, 'a+') as f:
     for line in au_img_path:
         f.write(os.path.join('AffWild2',line+'\n'))
         new_dataset_train_img_list.append(os.path.join('AffWild2',line+'\n'))
 
-np.savetxt(train_labels, AFFW_train_image_label ,fmt='%d', delimiter=' ')
+np.savetxt(train_labels, AffWild2_train_image_label ,fmt='%d', delimiter=' ')
 new_dataset_train_label_list.append(AFFW_train_image_label)
 
 
@@ -836,19 +836,19 @@ for val_txt in val_list:
 
 
 au_labels = np.concatenate(au_labels, axis=0)
-AFFW_val_image_label = np.zeros((au_labels.shape[0], len(total_AUs))) - 1
+AffWild2_val_image_label = np.zeros((au_labels.shape[0], len(total_AUs))) - 1
 for i, au in enumerate(au_ids):
     au = str(au)
     index = total_AUs.index(au)
-    AFFW_val_image_label[:, index] = au_labels[:, i]
+    AffWild2_val_image_label[:, index] = au_labels[:, i]
 
 with open(val_img_path, 'a+') as f:
     for line in au_img_path:
         f.write(os.path.join('AffWild2',line+'\n'))
         new_dataset_val_img_list.append(os.path.join('AffWild2',line+'\n'))
 
-np.savetxt(val_labels, AFFW_val_image_label ,fmt='%d', delimiter=' ')
-new_dataset_val_label_list.append(AFFW_val_image_label)
+np.savetxt(val_labels, AffWild2_val_image_label ,fmt='%d', delimiter=' ')
+new_dataset_val_label_list.append(AffWild2_val_image_label)
 
 
 
