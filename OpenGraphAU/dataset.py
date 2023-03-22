@@ -44,7 +44,7 @@ class AffWild2(Dataset):
             train_label_list_path = os.path.join(root_path, 'list', 'AffWild2_train_label.txt')
             train_label_list = np.loadtxt(train_label_list_path)
 
-            # AU relation
+            # AU relation   -> still not implemented for AffWild2
             if self._stage == 2:
                 au_relation_list_path = os.path.join(root_path, 'list', 'AffWild2_train_AU_relation.txt')
                 au_relation_list = np.loadtxt(au_relation_list_path)
@@ -68,7 +68,7 @@ class AffWild2(Dataset):
 
             # img labels
             eval_label_list_path = os.path.join(root_path, 'list', 'AffWild2_test_label.txt')
-            eval_label_list = np.loadtxt(eval_label_list_path)  #np.loadtxt(eval_label_list_path)  -> to change when we understand how to do it automatically
+            eval_label_list = np.loadtxt(eval_label_list_path)  #  -> to change when we understand how to do it automatically
             self.data_list = make_dataset(eval_image_list, eval_label_list)
 
     def __getitem__(self, index):

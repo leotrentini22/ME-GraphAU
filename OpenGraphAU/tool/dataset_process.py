@@ -870,19 +870,19 @@ for test_txt in test_list:
 
 
 au_labels = np.concatenate(au_labels, axis=0)
-AFFW_test_image_label = np.zeros((au_labels.shape[0], len(total_AUs))) - 1
+AffWild2_test_image_label = np.zeros((au_labels.shape[0], len(total_AUs))) - 1
 for i, au in enumerate(au_ids):
     au = str(au)
     index = total_AUs.index(au)
-    AFFW_test_image_label[:, index] = au_labels[:, i]
+    AffWild2_test_image_label[:, index] = au_labels[:, i]
 
 with open(test_img_path, 'a+') as f:
     for line in au_img_path:
         f.write(os.path.join('AffWild2',line+'\n'))
         new_dataset_test_img_list.append(os.path.join('AffWild2',line+'\n'))
 
-np.savetxt(test_labels, AFFW_test_image_label ,fmt='%d', delimiter=' ')
-new_dataset_test_label_list.append(AFFW_test_image_label)
+np.savetxt(test_labels, AffWild2_test_image_label ,fmt='%d', delimiter=' ')
+new_dataset_test_label_list.append(AffWild2_test_image_label)
 
 
 #

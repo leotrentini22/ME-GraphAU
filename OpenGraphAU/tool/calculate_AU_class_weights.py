@@ -4,7 +4,7 @@ import os
 list_path_prefix = '../data/AffWild2/list/'
 
 '''
-example of content in 'BP4D_train_label_fold1.txt':
+example of content in 'AffWild2_train_label_fold1.txt':
 0 0 0 0 0 1 1 0 0 0 0 0
 0 0 0 0 0 1 1 0 0 0 0 0
 0 0 0 0 0 1 1 0 0 0 0 0
