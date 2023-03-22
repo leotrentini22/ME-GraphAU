@@ -744,18 +744,18 @@ print("processing AffWild2------------------------------------------------------
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 
 
-list_path_prefix = 'data/AffWild2/list/' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
+list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
 
 #data/AffWild2/list
 #/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/
 
-train_path ='Train_Set' #'TrainFromTrain_Set'
-val_path = 'Validation_Set' #'ValFromTrain_Set'
-test_path = 'Validation_Set'
+train_path ='Train_Set' 
+val_path = 'Validation_Set' 
+test_path = 'Validation_Set'   #there is no test set in our dataset
 
 label_root = '/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/'
 
-train_list = os.listdir(os.path.join(label_root, train_path))
+train_list = os.listdir(os.path.join(label_root, train_path))  # path to /work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/Train_Set
 
 train_labels = os.path.join(list_path_prefix, 'AffWild2_train_label.txt')
 with open(train_labels, 'w') as  f:
@@ -767,10 +767,10 @@ val_labels = os.path.join(list_path_prefix, 'AffWild2_val_label.txt')
 with open(val_labels, 'w') as  f:
     i = 0
 
-test_list = os.listdir(os.path.join(label_root, test_path))
+test_list = os.listdir(os.path.join(label_root, test_path)) # path to /work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/Validation_Set
 
-test_labels = os.path.join(list_path_prefix, 'AffWild2_test_label.txt')
-with open(test_labels, 'w') as  f:
+test_labels = os.path.join(list_path_prefix, 'AffWild2_test_label.txt') # path to /home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_label.txt
+with open(test_labels, 'w') as  f:    # ???
     i = 0
 
 
@@ -780,12 +780,14 @@ with open(train_img_path, 'w') as f:
 val_img_path = os.path.join(list_path_prefix, 'AffWild2_val_img_path.txt')
 with open(val_img_path, 'w') as f:
     i = 0
-test_img_path = os.path.join(list_path_prefix, 'AffWild2_test_img_path.txt')
-with open(test_img_path, 'w') as f:
+test_img_path = os.path.join(list_path_prefix, 'AffWild2_test_img_path.txt') # path to /home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_img_path.txt
+with open(test_img_path, 'w') as f:    #???
     i = 0
 
 
 
+
+# Train
 
 au_labels = []
 au_img_path = []
@@ -819,6 +821,8 @@ new_dataset_train_label_list.append(AFFW_train_image_label)
 
 
 
+
+# Validation
 
 au_labels = []
 au_img_path = []
@@ -854,9 +858,11 @@ new_dataset_val_label_list.append(AffWild2_val_image_label)
 
 
 
+# Test
+
 au_labels = []
-au_img_path = []
-for test_txt in test_list:
+au_img_path = []             # for loop not clear  ->   test_text is a number? Or it's just a loop over the folders
+for test_txt in test_list:   # test list = /work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/Validation_Set
     with open(os.path.join(os.path.join(label_root, test_path), test_txt), 'r') as f:
         lines = f.readlines()
     lines = lines[1:]
@@ -866,7 +872,7 @@ for test_txt in test_list:
         if -1 in line:
             continue
         au_labels.append(line.reshape(1, -1))
-        au_img_path.append(os.path.join(test_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))
+        au_img_path.append(os.path.join(test_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))    # what does it do here?
 
 
 au_labels = np.concatenate(au_labels, axis=0)
@@ -878,8 +884,8 @@ for i, au in enumerate(au_ids):
 
 with open(test_img_path, 'a+') as f:
     for line in au_img_path:
-        f.write(os.path.join('AffWild2',line+'\n'))
-        new_dataset_test_img_list.append(os.path.join('AffWild2',line+'\n'))
+        f.write(os.path.join('AffWild2',line+'\n'))    #
+        new_dataset_test_img_list.append(os.path.join('AffWild2',line+'\n'))     # what does it do here?
 
 np.savetxt(test_labels, AffWild2_test_image_label ,fmt='%d', delimiter=' ')
 new_dataset_test_label_list.append(AffWild2_test_image_label)
