@@ -1,7 +1,7 @@
 import numpy as np
 import os
 
-list_path_prefix = '../data/AffWild2/list/'
+list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/'
 
 '''
 example of content in 'AffWild2_train_label_fold1.txt':
