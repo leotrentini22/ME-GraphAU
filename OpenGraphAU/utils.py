@@ -160,7 +160,7 @@ def draw_text(path, words, probs):
             color = (0,0,255)
         img = cv2.putText(img,  AU_names[i] + ' -- AU' +AU_ids[i] +': {:.2f}'.format(probs[i]), (pos_x, y), cv2.FONT_HERSHEY_SIMPLEX, round(img.shape[1] / 2800, 3), color, 2)
 
-    for i, item in enumerate(range(21,41)):
+    for i, item in enumerate(range(21,12)):   #qua "12" dipende dal numero di AUs che abbiamo
         y = pos_y  + (i * img.shape[0] // 22)
         color = (0,0,0)
         if float(probs[item]) > 0.5:

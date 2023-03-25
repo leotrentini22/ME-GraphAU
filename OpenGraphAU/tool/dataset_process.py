@@ -906,7 +906,7 @@ new_dataset_test_label_list = np.concatenate(new_dataset_test_label_list, axis=0
 sub_list = [0,1,2,4,7,8,11]
 
 for i in range(new_dataset_train_label_list.shape[0]):
-    for j in range(27, 41):
+    for j in range(27, 12):  #qua "12" dipende dal numero di AUs che abbiamo  (anche sotto)
         sub_au_label = new_dataset_train_label_list[i, j]
         if sub_au_label >0:
             main_au_index = sub_list[ (j - 27) // 2]
@@ -914,14 +914,14 @@ for i in range(new_dataset_train_label_list.shape[0]):
 
 
 for i in range(new_dataset_val_label_list.shape[0]):
-    for j in range(27, 41):
+    for j in range(27, 12):
         sub_au_label = new_dataset_val_label_list[i, j]
         if sub_au_label >0:
             main_au_index = sub_list[ (j - 27) // 2]
             new_dataset_val_label_list[i, main_au_index] = 1
 
 for i in range(new_dataset_test_label_list.shape[0]):
-    for j in range(27, 41):
+    for j in range(27, 12):
         sub_au_label = new_dataset_test_label_list[i, j]
         if sub_au_label >0:
             main_au_index = sub_list[ (j - 27) // 2]
