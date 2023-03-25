@@ -10,6 +10,10 @@ new_dataset_train_img_list = []
 new_dataset_val_img_list = []
 new_dataset_test_img_list = []
 
+new_dataset_train_label_list = []
+new_dataset_val_label_list = []
+new_dataset_test_label_list = []
+
 
 
 # #BP4d
@@ -789,17 +793,17 @@ with open(test_img_path, 'w') as f:    #???
 
 au_labels = []
 au_img_path = []
-for train_txt in train_list:
-    with open(os.path.join(os.path.join(label_root, train_path), train_txt), 'r') as f:
-        lines = f.readlines()
-    lines = lines[1:]
-    for j, line in enumerate(lines):
+for train_txt in train_list:  #scorre le cartelle in train list
+    with open(os.path.join(os.path.join(label_root, train_path), train_txt), 'r') as f: #apre la cartella
+        lines = f.readlines()  #legge contenuto
+    lines = lines[1:] #toglie prima linea
+    for j, line in enumerate(lines):   #converte contenuto linee
         line = line.rstrip('\n').split(',')
         line = np.array(line).astype(np.int32)
-        if -1 in line:
+        if -1 in line:  #se c'e' -1, skippa linea
             continue
-        au_labels.append(line.reshape(1, -1))
-        au_img_path.append(os.path.join(train_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))
+        au_labels.append(line.reshape(1, -1)) #appende la linea rishapata
+        au_img_path.append(os.path.join(train_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))  #appende il path dell'immagine, "split" splitta il path dove ci sono i punti e poi prende solo cio che viene prima del punto (quindi toglie ".txt")
 
 
 au_labels = np.concatenate(au_labels, axis=0)
@@ -811,8 +815,8 @@ for i, au in enumerate(au_ids):
 
 with open(train_img_path, 'a+') as f:
     for line in au_img_path:
-        f.write(os.path.join('AffWild2',line+'\n'))
-        new_dataset_train_img_list.append(os.path.join('AffWild2',line+'\n'))
+        f.write(os.path.join('AffWild20000',line+'\n'))
+        new_dataset_train_img_list.append(os.path.join('AffWild20000',line+'\n'))
 
 np.savetxt(train_labels, AffWild2_train_image_label ,fmt='%d', delimiter=' ')
 new_dataset_train_label_list.append(AffWild2_train_image_label)
