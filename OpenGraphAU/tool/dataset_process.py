@@ -817,7 +817,7 @@ with open(train_img_path, 'a+') as f:
         new_dataset_train_img_list.append(os.path.join('AffWild2',line+'\n'))
 
 np.savetxt(train_labels, AffWild2_train_image_label ,fmt='%d', delimiter=' ')
-new_dataset_train_label_list.append(AFFW_train_image_label)
+new_dataset_train_label_list.append(AffWild2_train_image_label)
 
 
 

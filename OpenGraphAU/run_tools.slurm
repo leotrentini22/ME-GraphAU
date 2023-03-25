@@ -9,5 +9,5 @@
 
 cd tool/
 srun python tool/dataset_process.py
-srun python calculate_AU_class_weights
+srun python tool/calculate_AU_class_weights.py
 deactivate
