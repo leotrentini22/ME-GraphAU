@@ -803,7 +803,7 @@ for train_txt in train_list:  #scorre le cartelle in train list
         if -1 in line:  #se c'e' -1, skippa linea
             continue
         au_labels.append(line.reshape(1, -1)) #appende la linea rishapata
-        au_img_path.append(os.path.join(train_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))  #appende il path dell'immagine, "split" splitta il path dove ci sono i punti e poi prende solo cio che viene prima del punto (quindi toglie ".txt")
+        au_img_path.append(os.path.join(os.path.join(img_path_vita,os.path.basename(os.path.normpath(train_txt.split('.')[0]))), str(j+1).zfill(5)+'.jpg'))  #appende il path dell'immagine, "split" splitta il path dove ci sono i punti e poi prende solo cio che viene prima del punto (quindi toglie ".txt")
 
 
 au_labels = np.concatenate(au_labels, axis=0)
@@ -815,8 +815,8 @@ for i, au in enumerate(au_ids):
 
 with open(train_img_path, 'a+') as f:
     for line in au_img_path:
-        f.write(os.path.join('AffWild20000',line+'\n'))
-        new_dataset_train_img_list.append(os.path.join('AffWild20000',line+'\n'))
+        f.write(os.path.join('AffWild2',line+'\n'))
+        new_dataset_train_img_list.append(os.path.join('AffWild2',line+'\n'))
 
 np.savetxt(train_labels, AffWild2_train_image_label ,fmt='%d', delimiter=' ')
 new_dataset_train_label_list.append(AffWild2_train_image_label)
@@ -838,7 +838,7 @@ for val_txt in val_list:
         if -1 in line:
             continue
         au_labels.append(line.reshape(1, -1))
-        au_img_path.append(os.path.join(val_txt.split('.')[0], str(j+1).zfill(5)+'.jpg'))
+        au_img_path.append(os.path.join(os.path.join(img_path_vita,os.path.basename(os.path.normpath(val_txt.split('.')[0]))), str(j+1).zfill(5)+'.jpg'))
 
 
 au_labels = np.concatenate(au_labels, axis=0)
