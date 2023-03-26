@@ -32,7 +32,7 @@ def test(net, test_loader):
                 inputs, targets = inputs.cuda(), targets.cuda()
             # outputs, _ = net(inputs)
             outputs = net(inputs)
-            outputs_filtered = outputs[:, [0,1,2,4,5,7,8,10,13,20,21,22,23]]  #I have only particular AUs
+            outputs_filtered = outputs[:, [0,1,2,4,5,7,9,12,19,20,21,22]]  #I have only particular AUs
             update_list = statistics(outputs_filtered, targets.detach(), 0.5)
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
