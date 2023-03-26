@@ -32,13 +32,16 @@ def test(net, test_loader):
                 inputs, targets = inputs.cuda(), targets.cuda()
             # outputs, _ = net(inputs)
             outputs = net(inputs)
-            update_list = statistics(outputs, targets.detach(), 0.5)
+            outputs_filtered = outputs[:, [0,1,2,4,5,7,8,10,13,20,21,22,23]]  #I have only particular AUs
+            update_list = statistics(outputs_filtered, targets.detach(), 0.5)
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
     mean_acc, acc_list = calc_acc(statistics_list)
     return mean_f1_score, f1_score_list, mean_acc, acc_list
 
 
+# COSE DE FARE
+# NN rida 41 categorie -> selezionare solo quelle che ci interessano
 
 def main(conf):
     dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
