@@ -1,3 +1,11 @@
+# IMPLEMENTED CORRECTLY FOR AFFWILD2
+# ck+ seems not usable (no AUs?)
+# casme seems doable
+# raf au seems doable but problem with AUs and organization (seems organized differently)
+
+
+
+
 import os
 import pandas as pd
 import numpy as np

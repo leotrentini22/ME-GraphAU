@@ -46,10 +46,6 @@ class AverageMeter(object):
 def statistics(pred, y, thresh):
     batch_size = pred.size(0)
     class_nb = pred.size(1)
-    print(pred.size(0))
-    print(pred.size(1))
-    print(y.size(0))
-    print(y.size(1))
     pred = pred >= thresh
     pred = pred.long()
     statistics_list = []

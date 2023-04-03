@@ -8,4 +8,4 @@
 #SBATCH --partition=gpu
 
 python train_stage1.py --dataset AffWild2 --arc resnet50 --exp-name resnet50_first_stage -b 64 -lr 0.0001 --fold 1 
-deactivate
+

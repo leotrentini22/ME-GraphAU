@@ -2,17 +2,17 @@ import os
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.utils.data import DataLoader #this changes
-from tqdm import tqdm #this changes
-import logging #this changes
+from torch.utils.data import DataLoader 
+from tqdm import tqdm 
+import logging 
 
 from model.ANFL import MEFARG
-from dataset import * #this changes
+from dataset import * 
 from utils import *
 from conf import get_config,set_logger,set_outdir,set_env
 
 
-def get_dataloader(conf):  #this changes -> now we need to take data from dataset
+def get_dataloader(conf):  
     print('==> Preparing data...')
     testset = AffWild2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
                              stage=1)
@@ -32,16 +32,16 @@ def test(net, test_loader):
                 inputs, targets = inputs.cuda(), targets.cuda()
             # outputs, _ = net(inputs)
             outputs = net(inputs)
+
+            # NN gives 41 categories -> selection of the one we care about
             outputs_filtered = outputs[:, [0,1,2,4,5,7,9,12,19,20,21,22]]  #I have only particular AUs
-            update_list = statistics(outputs_filtered, targets.detach(), 0.5)
+            update_list = statistics(outputs_filtered, targets.detach(), 0.5)   # detach -> separate tensor from his computational graph
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
     mean_acc, acc_list = calc_acc(statistics_list)
     return mean_f1_score, f1_score_list, mean_acc, acc_list
 
 
-# COSE DE FARE
-# NN rida 41 categorie -> selezionare solo quelle che ci interessano
 
 def main(conf):
     dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
