@@ -10,6 +10,10 @@ import os
 import pandas as pd
 import numpy as np
 # #
+
+# This has to change !!!
+
+# Now is set for particular AUs
 AUs = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
 # mcro_AUs = ['L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6', 'L10', 'R10', 'L12', 'R12', 'L14', 'R14']
 total_AUs = AUs
