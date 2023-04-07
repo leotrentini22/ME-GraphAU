@@ -635,8 +635,8 @@ new_dataset_test_label_list = []
 # #CASME2
 # print("processing CASME2------------------------------------------------------------")
 
-df = pd.read_excel('CASME2/CASME2-coding-20140508.xlsx')
-list_path_prefix = 'Datasets/hybrid_dataset/CASME2/list'
+df = pd.read_excel('/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx')
+list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/CASME2/list/'
 all_list = []
 
 CASME2_train_subjects_split = ['sub01', 'sub02', 'sub04', 'sub06', 'sub7', 'sub11', 'sub12', 'sub17', 'sub19', 'sub20', 'sub21', 'sub24','sub25']
