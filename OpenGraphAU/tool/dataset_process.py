@@ -635,119 +635,119 @@ new_dataset_test_label_list = []
 # #CASME2
 # print("processing CASME2------------------------------------------------------------")
 
-# df = pd.read_excel('CASME2/CASME2-coding-20140508.xlsx')
-# list_path_prefix = 'Datasets/hybrid_dataset/CASME2/list'
-# all_list = []
+df = pd.read_excel('CASME2/CASME2-coding-20140508.xlsx')
+list_path_prefix = 'Datasets/hybrid_dataset/CASME2/list'
+all_list = []
 
-# CASME2_train_subjects_split = ['sub01', 'sub02', 'sub04', 'sub06', 'sub7', 'sub11', 'sub12', 'sub17', 'sub19', 'sub20', 'sub21', 'sub24','sub25']
-# CASME2_val_subjects_split = ['sub03', 'sub05', 'sub16', 'sub22']
-# CASME2_test_subjects_split = ['sub08', 'sub09', 'sub10', 'sub15', 'sub23','sub26']
+CASME2_train_subjects_split = ['sub01', 'sub02', 'sub04', 'sub06', 'sub7', 'sub11', 'sub12', 'sub17', 'sub19', 'sub20', 'sub21', 'sub24','sub25']
+CASME2_val_subjects_split = ['sub03', 'sub05', 'sub16', 'sub22']
+CASME2_test_subjects_split = ['sub08', 'sub09', 'sub10', 'sub15', 'sub23','sub26']
 
-# au_ids  = ['1', '2' ,'4', '5', '6', '7', '9', '10','12', '14', '15','17', '18', '20', '24', '25', '26', '38' ,'L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6', 'L10', 'R10', 'L12', 'R12', 'L14', 'R14']
+au_ids  = ['1', '2' ,'4', '5', '6', '7', '9', '10','12', '14', '15','17', '18', '20', '24', '25', '26', '38' ,'L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6', 'L10', 'R10', 'L12', 'R12', 'L14', 'R14']
 
-# df.iloc[:, 0] =  df.iloc[:, 0].astype(str)
-# df = df.iloc[:,[0,1,3,5,7]]
-# values = df.values
+df.iloc[:, 0] =  df.iloc[:, 0].astype(str)
+df = df.iloc[:,[0,1,3,5,7]]
+values = df.values
 
-# train_img_path_list = []
-# train_au_label_list = []
+train_img_path_list = []
+train_au_label_list = []
 
-# val_img_path_list = []
-# val_au_label_list = []
+val_img_path_list = []
+val_au_label_list = []
 
-# test_img_path_list = []
-# test_au_label_list = []
+test_img_path_list = []
+test_au_label_list = []
 
-# for line in values:
-#     subject = 'sub'+ line[0].zfill(2)
-#     sequence = line[1]
-#     OnsetFrame = line[2]
-#     OffsetFrame = line[3]
-#     au = str(line[4])
-#     flag = 0
-#     au_label = np.zeros((1,len(au_ids)))
-#     if au !='?':
-#         au_items = au.split('+')
-#         for item in au_items:
-#             # print(item)
-#             if item in au_ids:
-#                 flag=1
-#                 au_label[0, au_ids.index(item)] = 1
+for line in values:
+    subject = 'sub'+ line[0].zfill(2)
+    sequence = line[1]
+    OnsetFrame = line[2]
+    OffsetFrame = line[3]
+    au = str(line[4])
+    flag = 0
+    au_label = np.zeros((1,len(au_ids)))
+    if au !='?':
+        au_items = au.split('+')
+        for item in au_items:
+            # print(item)
+            if item in au_ids:
+                flag=1
+                au_label[0, au_ids.index(item)] = 1
 
-#     if flag>0:
-#         for i in range(OnsetFrame, OffsetFrame+1):
-#             img_path = os.path.join(subject,str(sequence),'reg_img'+ str(i) +'.jpg')
-#             if subject in CASME2_train_subjects_split:
-#                 train_img_path_list.append(img_path)
-#                 train_au_label_list.append(au_label)
-#             elif subject in CASME2_val_subjects_split:
-#                 val_img_path_list.append(img_path)
-#                 val_au_label_list.append(au_label)
-#             else:
-#                 test_img_path_list.append(img_path)
-#                 test_au_label_list.append(au_label)
+    if flag>0:
+        for i in range(OnsetFrame, OffsetFrame+1):
+            img_path = os.path.join(subject,str(sequence),'reg_img'+ str(i) +'.jpg')
+            if subject in CASME2_train_subjects_split:
+                train_img_path_list.append(img_path)
+                train_au_label_list.append(au_label)
+            elif subject in CASME2_val_subjects_split:
+                val_img_path_list.append(img_path)
+                val_au_label_list.append(au_label)
+            else:
+                test_img_path_list.append(img_path)
+                test_au_label_list.append(au_label)
 
-# TRAIN_numpy_list = np.concatenate(train_au_label_list,axis=0)
-# VAL_numpy_list = np.concatenate(val_au_label_list,axis=0)
-# TEST_numpy_list = np.concatenate(test_au_label_list,axis=0)
+TRAIN_numpy_list = np.concatenate(train_au_label_list,axis=0)
+VAL_numpy_list = np.concatenate(val_au_label_list,axis=0)
+TEST_numpy_list = np.concatenate(test_au_label_list,axis=0)
 
-# # print(TRAIN_numpy_list.sum(0))
-# # print(VAL_numpy_list.sum(0))
-# # print(TEST_numpy_list.sum(0))
-# CASME2_train_image_label = np.zeros((TRAIN_numpy_list.shape[0], len(total_AUs))) - 1
-# for i, au in enumerate(au_ids):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     CASME2_train_image_label[:, index] = TRAIN_numpy_list[:, i]
+# print(TRAIN_numpy_list.sum(0))
+# print(VAL_numpy_list.sum(0))
+# print(TEST_numpy_list.sum(0))
+CASME2_train_image_label = np.zeros((TRAIN_numpy_list.shape[0], len(total_AUs))) - 1
+for i, au in enumerate(au_ids):
+    au = str(au)
+    index = total_AUs.index(au)
+    CASME2_train_image_label[:, index] = TRAIN_numpy_list[:, i]
 
-# np.savetxt(os.path.join(list_path_prefix,'CASME2_train_label.txt'),  CASME2_train_image_label, fmt='%d', delimiter=' ')
-# new_dataset_train_label_list.append(CASME2_train_image_label)
-
-
-# with open(os.path.join(list_path_prefix, 'CASME2_train_img_path.txt'), 'w+') as f:
-#     i=0
-# for img_path in train_img_path_list:
-#     with open(os.path.join(list_path_prefix,'CASME2_train_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('CASME2', img_path+'\n'))
-#         new_dataset_train_img_list.append(os.path.join('CASME2', img_path+'\n'))
+np.savetxt(os.path.join(list_path_prefix,'CASME2_train_label.txt'),  CASME2_train_image_label, fmt='%d', delimiter=' ')
+new_dataset_train_label_list.append(CASME2_train_image_label)
 
 
-
-# CASME2_val_image_label = np.zeros((VAL_numpy_list.shape[0], len(total_AUs))) - 1
-# for i, au in enumerate(au_ids):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     CASME2_val_image_label[:, index] = VAL_numpy_list[:, i]
-
-# np.savetxt(os.path.join(list_path_prefix,'CASME2_val_label.txt'),  CASME2_val_image_label, fmt='%d', delimiter=' ')
-# new_dataset_val_label_list.append(CASME2_val_image_label)
-
-# with open(os.path.join(list_path_prefix, 'CASME2_val_img_path.txt'), 'w+') as f:
-#     i=0
-# for img_path in val_img_path_list:
-#     with open(os.path.join(list_path_prefix,'CASME2_val_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('CASME2', img_path+'\n'))
-#         new_dataset_val_img_list.append(os.path.join('CASME2', img_path+'\n'))
-
-
-# CASME2_test_image_label = np.zeros((TEST_numpy_list.shape[0], len(total_AUs))) - 1
-# for i, au in enumerate(au_ids):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     CASME2_test_image_label[:, index] = TEST_numpy_list[:, i]
+with open(os.path.join(list_path_prefix, 'CASME2_train_img_path.txt'), 'w+') as f:
+    i=0
+for img_path in train_img_path_list:
+    with open(os.path.join(list_path_prefix,'CASME2_train_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('CASME2', img_path+'\n'))
+        new_dataset_train_img_list.append(os.path.join('CASME2', img_path+'\n'))
 
 
 
+CASME2_val_image_label = np.zeros((VAL_numpy_list.shape[0], len(total_AUs))) - 1
+for i, au in enumerate(au_ids):
+    au = str(au)
+    index = total_AUs.index(au)
+    CASME2_val_image_label[:, index] = VAL_numpy_list[:, i]
 
-# np.savetxt(os.path.join(list_path_prefix,'CASME2_test_label.txt'),  CASME2_test_image_label, fmt='%d', delimiter=' ')
+np.savetxt(os.path.join(list_path_prefix,'CASME2_val_label.txt'),  CASME2_val_image_label, fmt='%d', delimiter=' ')
+new_dataset_val_label_list.append(CASME2_val_image_label)
 
-# with open(os.path.join(list_path_prefix, 'CASME2_test_img_path.txt'), 'w+') as f:
-#     i=0
-# for img_path in test_img_path_list:
-#     with open(os.path.join(list_path_prefix,'CASME2_test_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('CASME2', img_path+'\n'))
-#         new_dataset_test_img_list.append(os.path.join('CASME2', img_path+'\n'))
-# new_dataset_test_label_list.append(CASME2_test_image_label)
+with open(os.path.join(list_path_prefix, 'CASME2_val_img_path.txt'), 'w+') as f:
+    i=0
+for img_path in val_img_path_list:
+    with open(os.path.join(list_path_prefix,'CASME2_val_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('CASME2', img_path+'\n'))
+        new_dataset_val_img_list.append(os.path.join('CASME2', img_path+'\n'))
+
+
+CASME2_test_image_label = np.zeros((TEST_numpy_list.shape[0], len(total_AUs))) - 1
+for i, au in enumerate(au_ids):
+    au = str(au)
+    index = total_AUs.index(au)
+    CASME2_test_image_label[:, index] = TEST_numpy_list[:, i]
+
+
+
+
+np.savetxt(os.path.join(list_path_prefix,'CASME2_test_label.txt'),  CASME2_test_image_label, fmt='%d', delimiter=' ')
+
+with open(os.path.join(list_path_prefix, 'CASME2_test_img_path.txt'), 'w+') as f:
+    i=0
+for img_path in test_img_path_list:
+    with open(os.path.join(list_path_prefix,'CASME2_test_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('CASME2', img_path+'\n'))
+        new_dataset_test_img_list.append(os.path.join('CASME2', img_path+'\n'))
+new_dataset_test_label_list.append(CASME2_test_image_label)
 
 
 #-------------------------------------------------------------------------------------------------------------------------------
