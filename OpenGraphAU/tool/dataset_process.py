@@ -635,14 +635,14 @@ new_dataset_test_label_list = []
 # #CASME2
 # print("processing CASME2------------------------------------------------------------")
 
-dataset_path_CASME='/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx'
+dataset_path_CASME='/work/vita/datasets/CASME2/Cropped/'
 df = pd.read_excel('/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx')
 list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/CASME2/list/'
 all_list = []
 
-CASME2_train_subjects_split = ['sub01', 'sub02', 'sub04', 'sub06', 'sub7', 'sub11', 'sub12', 'sub17', 'sub19', 'sub20', 'sub21', 'sub24','sub25']
-CASME2_val_subjects_split = ['sub03', 'sub05', 'sub16', 'sub22']
-CASME2_test_subjects_split = ['sub08', 'sub09', 'sub10', 'sub15', 'sub23','sub26']
+CASME2_train_subjects_split = ['/work/vita/datasets/CASME2/Cropped/sub01', '/work/vita/datasets/CASME2/Cropped/sub02', '/work/vita/datasets/CASME2/Cropped/sub04', '/work/vita/datasets/CASME2/Cropped/sub06', '/work/vita/datasets/CASME2/Cropped/sub7', '/work/vita/datasets/CASME2/Cropped/sub11', '/work/vita/datasets/CASME2/Cropped/sub12', '/work/vita/datasets/CASME2/Cropped/sub17', '/work/vita/datasets/CASME2/Cropped/sub19', '/work/vita/datasets/CASME2/Cropped/sub20', '/work/vita/datasets/CASME2/Cropped/sub21', '/work/vita/datasets/CASME2/Cropped/sub24','/work/vita/datasets/CASME2/Cropped/sub25']
+CASME2_val_subjects_split = ['/work/vita/datasets/CASME2/Cropped/sub03', '/work/vita/datasets/CASME2/Cropped/sub05', '/work/vita/datasets/CASME2/Cropped/sub16', '/work/vita/datasets/CASME2/Cropped/sub22']
+CASME2_test_subjects_split = ['/work/vita/datasets/CASME2/Cropped/sub08', '/work/vita/datasets/CASME2/Cropped/sub09', '/work/vita/datasets/CASME2/Cropped/sub10', '/work/vita/datasets/CASME2/Cropped/sub15', '/work/vita/datasets/CASME2/Cropped/sub23','/work/vita/datasets/CASME2/Cropped/sub26']
 
 au_ids  = ['1', '2' ,'4', '5', '6', '7', '9', '10','12', '14', '15','17', '18', '20', '24', '25', '26', '38' ,'L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6', 'L10', 'R10', 'L12', 'R12', 'L14', 'R14']
 
@@ -660,7 +660,7 @@ test_img_path_list = []
 test_au_label_list = []
 
 for line in values:
-    subject = 'sub'+ line[0].zfill(2)
+    subject = '/work/vita/datasets/CASME2/Cropped/sub'+ line[0].zfill(2)
     sequence = line[1]
     OnsetFrame = line[2]
     OffsetFrame = line[3]
@@ -678,10 +678,10 @@ for line in values:
     if flag>0:
         for i in range(OnsetFrame, OffsetFrame+1):
             img_path = os.path.join(subject,str(sequence),'reg_img'+ str(i) +'.jpg')
-            if subject in os.path.join(dataset_path_CASME,CASME2_train_subjects_split):
+            if subject in CASME2_train_subjects_split:
                 train_img_path_list.append(img_path)
                 train_au_label_list.append(au_label)
-            elif subject in os.path.join(dataset_path_CASME,CASME2_val_subjects_split):
+            elif subject in CASME2_val_subjects_split:
                 val_img_path_list.append(img_path)
                 val_au_label_list.append(au_label)
             else:
