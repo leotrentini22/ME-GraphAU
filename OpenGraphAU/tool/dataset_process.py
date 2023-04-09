@@ -635,6 +635,7 @@ new_dataset_test_label_list = []
 # #CASME2
 # print("processing CASME2------------------------------------------------------------")
 
+dataset_path_CASME='/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx'
 df = pd.read_excel('/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx')
 list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/CASME2/list/'
 all_list = []
@@ -677,10 +678,10 @@ for line in values:
     if flag>0:
         for i in range(OnsetFrame, OffsetFrame+1):
             img_path = os.path.join(subject,str(sequence),'reg_img'+ str(i) +'.jpg')
-            if subject in CASME2_train_subjects_split:
+            if subject in os.path.join(dataset_path_CASME,CASME2_train_subjects_split):
                 train_img_path_list.append(img_path)
                 train_au_label_list.append(au_label)
-            elif subject in CASME2_val_subjects_split:
+            elif subject in os.path.join(dataset_path_CASME,CASME2_val_subjects_split):
                 val_img_path_list.append(img_path)
                 val_au_label_list.append(au_label)
             else:
