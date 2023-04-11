@@ -940,19 +940,19 @@ for i in range(new_dataset_test_label_list.shape[0]):
             main_au_index = sub_list[ (j - 27) // 2]
             new_dataset_test_label_list[i, main_au_index] = 1
 
-np.savetxt('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_train_label.txt', new_dataset_train_label_list ,fmt='%d', delimiter=' ')
-np.savetxt('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_val_label.txt', new_dataset_val_label_list ,fmt='%d', delimiter=' ')
-np.savetxt('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_label.txt', new_dataset_test_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_train_label.txt', new_dataset_train_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_val_label.txt', new_dataset_val_label_list ,fmt='%d', delimiter=' ')
+np.savetxt('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_label.txt', new_dataset_test_label_list ,fmt='%d', delimiter=' ')
 
-with open('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_train_img_path.txt', 'w+') as f:
+with open('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_train_img_path.txt', 'w+') as f:
     for line in new_dataset_train_img_list:
         f.write(line)
 
-with open('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_val_img_path.txt', 'w+') as f:
+with open('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_val_img_path.txt', 'w+') as f:
     for line in new_dataset_val_img_list:
         f.write(line)
 
-with open('ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_img_path.txt', 'w+') as f:
+with open('/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_img_path.txt', 'w+') as f:
     for line in new_dataset_test_img_list:
         f.write(line)
 
