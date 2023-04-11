@@ -14,9 +14,15 @@ from conf import get_config,set_logger,set_outdir,set_env
 
 def get_dataloader(conf):  
     print('==> Preparing data...')
-    testset = AffWild2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
+    if conf.dataset == 'AffWild2':
+        testset = AffWild2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
                              stage=1)
-    test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
+        test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
+    elif conf.dataset == 'CASME2':
+        testset = CASME2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
+                             stage=1)
+        test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
+
     return test_loader, len(testset)
 
 
@@ -34,7 +40,7 @@ def test(net, test_loader):
             outputs = net(inputs)
 
             # NN gives 41 categories -> selection of the one we care about
-            outputs_filtered = outputs[:, [0,1,2,4,5,7,9,12,19,20,21,22]]  #I have only particular AUs
+            outputs_filtered = outputs[:, [0,1,2,3,4,5,6,7,9,11,12,14,15,17,,20,21,22,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]]  #[:, [0,1,2,4,5,7,9,12,19,20,21,22]]  #I have only particular AUs
             update_list = statistics(outputs_filtered, targets.detach(), 0.5)   # detach -> separate tensor from his computational graph
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
@@ -44,7 +50,10 @@ def test(net, test_loader):
 
 
 def main(conf):
-    dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
+    if conf.dataset == 'AffWild2':
+        dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
+    elif conf.dataset == 'CASME2':
+        dataset_info = CASME2_infolist
 
     # data     
     test_loader, test_data_num = get_dataloader(conf)
