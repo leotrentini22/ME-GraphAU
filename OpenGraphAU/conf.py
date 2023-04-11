@@ -107,6 +107,10 @@ def get_config():
         with open('conf/AffWild2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
+    elif cfg.dataset == 'CASME2':
+        with open('conf/CASME2_config.yaml', 'r') as f:
+            datasets_cfg = yaml.load(f)
+            datasets_cfg = edict(datasets_cfg)
     else:
         raise Exception("Unkown Datsets:",cfg.dataset)
 

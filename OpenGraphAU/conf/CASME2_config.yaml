@@ -1,0 +1,3 @@
+dataset_path: '/home/trentini/ME-GraphAU/OpenGraphAU/data/CASME2' #'/work/vita/datasets/Aff-Wild2/'
+num_classes: 32
+neighbor_num: 4
