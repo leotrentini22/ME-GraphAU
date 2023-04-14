@@ -480,14 +480,16 @@ new_dataset_test_label_list = []
 
 # #-------------------------------------------------------------------------------------------------------------------------------
 # #RAF-AU
-# print("processing RAF-AU------------------------------------------------------------")
+print("processing RAF-AU------------------------------------------------------------")
 
-# import os
-# import random
-# au_idx = ['1', '2' ,'4', '5', '6', '7', '9', '10', '12', '14', '15', '16', '17', '18', '19' ,'20', '22', '23', '24', '25', '26', '27', '32', '39', 'L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6','L10','R10', 'L12', 'R12', 'L14', 'R14']
-# list_path_prefix = 'Datasets/hybrid_dataset/RAF-AU/list'
+import os
+import random
+au_idx = ['1', '2' ,'4', '5', '6', '7', '9', '10', '12', '14', '15', '16', '17', '18', '19' ,'20', '22', '23', '24', '25', '26', '27', '32', '39', 'L1', 'R1', 'L2', 'R2', 'L4', 'R4', 'L6', 'R6','L10','R10', 'L12', 'R12', 'L14', 'R14']
+list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/RAF-AU/list/'
+
+# 4908 images in total
+
 # train_idx = []
-
 # with open('RAF-AU-train_ids.txt', 'r') as f:
 #     lines = f.readlines()
 #     for idx in lines:
@@ -508,128 +510,128 @@ new_dataset_test_label_list = []
 #         idx = int(idx.strip())
 #         test_idx.append(idx)
 
-# with open('RAF-AU/RAFAU_label.txt', 'r') as f:
-#     label_lines = f.readlines()
+with open('/work/vita/datasets/RAF-AU/RAFAU_label.txt', 'r') as f:
+    label_lines = f.readlines()
 
-# img_path_list = []
-# au_label_list = []
-# for idx in train_idx:
-#     train_au_item = label_lines[idx]
-#     items = train_au_item.split(' ')
-#     img_path = items[0]
-#     labels = items[1].strip()
-#     flag = 0
-#     if labels!= 'null':
-#         label_items = labels.split('+')
-#         au_label = np.zeros((1, len(au_idx)))
-#         for item in label_items:
-#             if item in au_idx:
-#                 flag = 1
-#                 au_label[0, au_idx.index(item)] = 1
-#     if flag >0:
-#         img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
-#         au_label_list.append(au_label)
+img_path_list = []
+au_label_list = []
+for idx in range(0,3000):
+    train_au_item = label_lines[idx]
+    items = train_au_item.split(' ')
+    img_path = items[0]
+    labels = items[1].strip()
+    flag = 0
+    if labels!= 'null':
+        label_items = labels.split('+')
+        au_label = np.zeros((1, len(au_idx)))
+        for item in label_items:
+            if item in au_idx:
+                flag = 1
+                au_label[0, au_idx.index(item)] = 1
+    if flag >0:
+        img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
+        au_label_list.append(au_label)
 
-# TRAIN_numpy_list = np.concatenate(au_label_list,axis=0)
-# RAF_AU_train_image_label = np.zeros((TRAIN_numpy_list.shape[0], len(total_AUs))) -1
-# # print(TRAIN_numpy_list.sum(0))
+TRAIN_numpy_list = np.concatenate(au_label_list,axis=0)
+RAF_AU_train_image_label = np.zeros((TRAIN_numpy_list.shape[0], len(total_AUs))) -1
+# print(TRAIN_numpy_list.sum(0))
 
-# for i, au in enumerate(au_idx):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     RAF_AU_train_image_label[:, index] = TRAIN_numpy_list[:, i]
+for i, au in enumerate(au_idx):
+    au = str(au)
+    index = total_AUs.index(au)
+    RAF_AU_train_image_label[:, index] = TRAIN_numpy_list[:, i]
 
-# np.savetxt(os.path.join(list_path_prefix,'RAF_AU_train_label.txt'), RAF_AU_train_image_label,fmt='%d', delimiter=' ')
-# new_dataset_train_label_list.append(RAF_AU_train_image_label)
-
-
-# with open(os.path.join(list_path_prefix, 'RAF_AU_train_img_path.txt'), 'a+') as f:
-#     l=0
-# for img_path in img_path_list:
-#     with open(os.path.join(list_path_prefix,'RAF_AU_train_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('RAF-AU',img_path+'\n'))
-#         new_dataset_train_img_list.append(os.path.join('RAF-AU',img_path+'\n'))
+np.savetxt(os.path.join(list_path_prefix,'RAF_AU_train_label.txt'), RAF_AU_train_image_label,fmt='%d', delimiter=' ')
+new_dataset_train_label_list.append(RAF_AU_train_image_label)
 
 
-# img_path_list = []
-# au_label_list = []
-# for idx in val_idx:
-#     val_au_item = label_lines[idx]
-#     items = val_au_item.split(' ')
-#     img_path = items[0]
-#     labels = items[1].strip()
-#     flag = 0
-#     if labels!= 'null':
-#         label_items = labels.split('+')
-#         au_label = np.zeros((1, len(au_idx)))
-#         for item in label_items:
-#             if item in au_idx:
-#                 flag = 1
-#                 au_label[0, au_idx.index(item)] = 1
-#     if flag >0:
-#         img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
-#         au_label_list.append(au_label)
-
-# VAL_numpy_list = np.concatenate(au_label_list,axis=0)
-# # print(VAL_numpy_list.sum(0))
-
-# RAF_AU_val_image_label = np.zeros((VAL_numpy_list.shape[0], len(total_AUs))) -1
-
-# for i, au in enumerate(au_idx):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     RAF_AU_val_image_label[:, index] = VAL_numpy_list[:, i]
-
-# np.savetxt(os.path.join(list_path_prefix,'RAF_AU_val_label.txt'), RAF_AU_val_image_label,fmt='%d', delimiter=' ')
-# new_dataset_val_label_list.append(RAF_AU_val_image_label)
+with open(os.path.join(list_path_prefix, 'RAF_AU_train_img_path.txt'), 'a+') as f:
+    l=0
+for img_path in img_path_list:
+    with open(os.path.join(list_path_prefix,'RAF_AU_train_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
+        new_dataset_train_img_list.append(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
 
 
-# with open(os.path.join(list_path_prefix, 'RAF_AU_val_img_path.txt'), 'a+') as f:
-#     l=0
-# for img_path in img_path_list:
-#     with open(os.path.join(list_path_prefix,'RAF_AU_val_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('RAF-AU',img_path+'\n'))
-#         new_dataset_val_img_list.append(os.path.join('RAF-AU',img_path+'\n'))
+img_path_list = []
+au_label_list = []
+for idx in range(3001,3500):
+    val_au_item = label_lines[idx]
+    items = val_au_item.split(' ')
+    img_path = items[0]
+    labels = items[1].strip()
+    flag = 0
+    if labels!= 'null':
+        label_items = labels.split('+')
+        au_label = np.zeros((1, len(au_idx)))
+        for item in label_items:
+            if item in au_idx:
+                flag = 1
+                au_label[0, au_idx.index(item)] = 1
+    if flag >0:
+        img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
+        au_label_list.append(au_label)
+
+VAL_numpy_list = np.concatenate(au_label_list,axis=0)
+# print(VAL_numpy_list.sum(0))
+
+RAF_AU_val_image_label = np.zeros((VAL_numpy_list.shape[0], len(total_AUs))) -1
+
+for i, au in enumerate(au_idx):
+    au = str(au)
+    index = total_AUs.index(au)
+    RAF_AU_val_image_label[:, index] = VAL_numpy_list[:, i]
+
+np.savetxt(os.path.join(list_path_prefix,'RAF_AU_val_label.txt'), RAF_AU_val_image_label,fmt='%d', delimiter=' ')
+new_dataset_val_label_list.append(RAF_AU_val_image_label)
 
 
-# img_path_list = []
-# au_label_list = []
-# for idx in test_idx:
-#     test_au_item = label_lines[idx]
-#     items = test_au_item.split(' ')
-#     img_path = items[0]
-#     labels = items[1].strip()
-#     flag = 0
-#     if labels!= 'null':
-#         label_items = labels.split('+')
-#         au_label = np.zeros((1, len(au_idx)))
-#         for item in label_items:
-#             if item in au_idx:
-#                 flag = 1
-#                 au_label[0, au_idx.index(item)] = 1
-#     if flag >0:
-#         img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
-#         au_label_list.append(au_label)
+with open(os.path.join(list_path_prefix, 'RAF_AU_val_img_path.txt'), 'a+') as f:
+    l=0
+for img_path in img_path_list:
+    with open(os.path.join(list_path_prefix,'RAF_AU_val_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
+        new_dataset_val_img_list.append(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
 
-# TEST_numpy_list = np.concatenate(au_label_list,axis=0)
-# RAF_AU_test_image_label = np.zeros((TEST_numpy_list.shape[0], len(total_AUs))) -1
-# # print(TEST_numpy_list.sum(0))
 
-# for i, au in enumerate(au_idx):
-#     au = str(au)
-#     index = total_AUs.index(au)
-#     RAF_AU_test_image_label[:, index] = TEST_numpy_list[:, i]
+img_path_list = []
+au_label_list = []
+for idx in range(3501,4907):
+    test_au_item = label_lines[idx]
+    items = test_au_item.split(' ')
+    img_path = items[0]
+    labels = items[1].strip()
+    flag = 0
+    if labels!= 'null':
+        label_items = labels.split('+')
+        au_label = np.zeros((1, len(au_idx)))
+        for item in label_items:
+            if item in au_idx:
+                flag = 1
+                au_label[0, au_idx.index(item)] = 1
+    if flag >0:
+        img_path_list.append(img_path.split('.')[0].zfill(4) + '_aligned.jpg')
+        au_label_list.append(au_label)
 
-# np.savetxt(os.path.join(list_path_prefix,'RAF_AU_test_label.txt'),  RAF_AU_test_image_label,fmt='%d', delimiter=' ')
-# new_dataset_test_label_list.append(RAF_AU_test_image_label)
+TEST_numpy_list = np.concatenate(au_label_list,axis=0)
+RAF_AU_test_image_label = np.zeros((TEST_numpy_list.shape[0], len(total_AUs))) -1
+# print(TEST_numpy_list.sum(0))
 
-# with open(os.path.join(list_path_prefix, 'RAF_AU_test_img_path.txt'), 'a+') as f:
-#     l=0
+for i, au in enumerate(au_idx):
+    au = str(au)
+    index = total_AUs.index(au)
+    RAF_AU_test_image_label[:, index] = TEST_numpy_list[:, i]
 
-# for img_path in img_path_list:
-#     with open(os.path.join(list_path_prefix,'RAF_AU_test_img_path.txt'), 'a+') as f:
-#         f.write(os.path.join('RAF-AU',img_path+'\n'))
-#         new_dataset_test_img_list.append(os.path.join('RAF-AU',img_path+'\n'))
+np.savetxt(os.path.join(list_path_prefix,'RAF_AU_test_label.txt'),  RAF_AU_test_image_label,fmt='%d', delimiter=' ')
+new_dataset_test_label_list.append(RAF_AU_test_image_label)
+
+with open(os.path.join(list_path_prefix, 'RAF_AU_test_img_path.txt'), 'a+') as f:
+    l=0
+
+for img_path in img_path_list:
+    with open(os.path.join(list_path_prefix,'RAF_AU_test_img_path.txt'), 'a+') as f:
+        f.write(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
+        new_dataset_test_img_list.append(os.path.join('/work/vita/datasets/RAF-AU/aligned',img_path+'\n'))
 
 # #-------------------------------------------------------------------------------------------------------------------------------
 # #CASME2
