@@ -7,4 +7,4 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=gpu
 
-srun python train_stage1.py --arc resnet50 --exp-name OpenGprahAU-ResNet50_first_stage -b 512 -lr 0.00002  
+srun python train_stage1.py --arc resnet50 --exp-name OpenGprahAU-ResNet50_first_stage -b 64 -lr 0.00002  
