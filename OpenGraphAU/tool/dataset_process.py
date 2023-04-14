@@ -770,7 +770,7 @@ test_path = 'Validation_Set'   #there is no test set in our dataset
 
 label_root = '/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/'
 
-train_list = os.listdir(os.path.join(label_root, train_path))  # path to /work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/Train_Set
+train_list = os.listdir(os.path.join(label_root, train_path)) 
 
 train_labels = os.path.join(list_path_prefix, 'AffWild2_train_label.txt')
 with open(train_labels, 'w') as  f:
@@ -782,10 +782,10 @@ val_labels = os.path.join(list_path_prefix, 'AffWild2_val_label.txt')
 with open(val_labels, 'w') as  f:
     i = 0
 
-test_list = os.listdir(os.path.join(label_root, test_path)) # path to /work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/Validation_Set
+test_list = os.listdir(os.path.join(label_root, test_path)) 
 
-test_labels = os.path.join(list_path_prefix, 'AffWild2_test_label.txt') # path to /home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_label.txt
-with open(test_labels, 'w') as  f:    # ???
+test_labels = os.path.join(list_path_prefix, 'AffWild2_test_label.txt') 
+with open(test_labels, 'w') as  f:    
     i = 0
 
 
@@ -795,8 +795,8 @@ with open(train_img_path, 'w') as f:
 val_img_path = os.path.join(list_path_prefix, 'AffWild2_val_img_path.txt')
 with open(val_img_path, 'w') as f:
     i = 0
-test_img_path = os.path.join(list_path_prefix, 'AffWild2_test_img_path.txt') # path to /home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/AffWild2_test_img_path.txt
-with open(test_img_path, 'w') as f:    #???
+test_img_path = os.path.join(list_path_prefix, 'AffWild2_test_img_path.txt') 
+with open(test_img_path, 'w') as f:    
     i = 0
 
 

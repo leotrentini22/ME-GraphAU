@@ -17,7 +17,7 @@ parser = argparse.ArgumentParser(description='PyTorch Training')
 parser.add_argument('--dataset', default='AffWild2', type=str, choices=['BP4D','DISFA','hybrid','AffWild2', 'CASME2'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AffWild2")
 
 # Param
-parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 128)')
+parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 64)')
 parser.add_argument('-lr', '--learning-rate', default=0.00001, type=float, metavar='LR', help='initial learning rate')
 parser.add_argument('-e', '--epochs', default=20, type=int, metavar='N', help='number of total epochs to run')
 parser.add_argument('-j', '--num_workers', default=4, type=int, metavar='N', help='number of data loading workers (default: 4)')
@@ -107,6 +107,7 @@ def get_config():
         with open('conf/AffWild2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
+            
     elif cfg.dataset == 'CASME2':
         with open('conf/CASME2_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
