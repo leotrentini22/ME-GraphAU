@@ -22,13 +22,17 @@ def get_dataloader(conf):
         testset = CASME2(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
                              stage=1)
         test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
+    elif conf.dataset == 'RAFAU':
+        testset = RAFAU(conf.dataset_path, phase='test', transform=image_eval(crop_size=conf.crop_size),
+                             stage=1)
+        test_loader = DataLoader(testset, batch_size=conf.batch_size, shuffle=False, num_workers=conf.num_workers)
 
     return test_loader, len(testset)
 
 
 
 #Val
-def test(net, test_loader):
+def test(net, test_loader, conf):
     net.eval()
     statistics_list = None
     for batch_idx, (inputs, targets) in enumerate(tqdm(test_loader)):
@@ -40,7 +44,12 @@ def test(net, test_loader):
             outputs = net(inputs)
 
             # NN gives 41 categories -> selection of the one we care about
-            outputs_filtered = outputs[:, [0,1,2,3,4,5,6,7,9,11,12,14,15,17,20,21,22,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]]  #[:, [0,1,2,4,5,7,9,12,19,20,21,22]]  #I have only particular AUs
+
+            if conf.dataset == 'AffWild2':
+                outputs_filtered = outputs[:, [0,1,2,4,5,7,9,12,19,20,21,22]]
+            elif conf.dataset == 'CASME2':
+                outputs_filtered = outputs[:, [0,1,2,3,4,5,6,7,9,11,12,14,15,17,20,21,22,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39]]  #I have only particular AUs
+            
             update_list = statistics(outputs_filtered, targets.detach(), 0.5)   # detach -> separate tensor from his computational graph
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
@@ -54,6 +63,8 @@ def main(conf):
         dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
     elif conf.dataset == 'CASME2':
         dataset_info = CASME2_infolist
+    elif conf.dataset == 'RAFAU':
+        dataset_info = RAFAU_infolist
 
     # data     
     test_loader, test_data_num = get_dataloader(conf)
@@ -69,7 +80,7 @@ def main(conf):
         net = nn.DataParallel(net).cuda()
 
     #test
-    test_mean_f1_score, test_f1_score, test_mean_acc, test_acc = test(net, test_loader)
+    test_mean_f1_score, test_f1_score, test_mean_acc, test_acc = test(net, test_loader, conf)
 
     # log
     infostr = {'test_mean_f1_score {:.2f} test_mean_acc {:.2f}' .format(100.* test_mean_f1_score, 100.* test_mean_acc)}

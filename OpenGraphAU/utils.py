@@ -357,6 +357,70 @@ def AffWild2_prediction_infolist(pred, thresh):
     infostr_au_pred = {*AU_prediction}
     return infostr_pred_probs, infostr_au_pred
 
+
+def RAFAU_infolist(list):
+    infostr = {'AU1: {:.2f} AU2: {:.2f} AU4: {:.2f} AU5: {:.2f} AU6: {:.2f} AU7: {:.2f} AU9: {:.2f} AU10: {:.2f} \
+     AU12: {:.2f} AU14: {:.2f} AU15: {:.2f} AU16: {:.2f} AU17: {:.2f} AU18: {:.2f} AU19: {:.2f} AU20: {:.2f} \
+     AU22: {:.2f} AU23: {:.2f} AU24: {:.2f} AU25: {:.2f} AU26: {:.2f} AU27: {:.2f} AU32: {:.2f} AU39: {:.2f} \
+      AUL1: {:.2f} AUR1: {:.2f} AUL2: {:.2f} AUR2: {:.2f} AUL4: {:.2f} AUR4: {:.2f} AUL6: {:.2f} AUR6: {:.2f} AUL10: {:.2f} \
+      AUR10: {:.2f} AUL12: {:.2f} AUR12: {:.2f} AUL14: {:.2f} AUR14: {:.2f}'.format(*[100.*x for x in list])}
+    return infostr
+
+
+def RAFAU_prediction_infolist(pred, thresh):
+    {'AU1: {:.2f} AU2: {:.2f} AU4: {:.2f} AU5: {:.2f} AU6: {:.2f} AU7: {:.2f} AU9: {:.2f} AU10: {:.2f} \
+     AU12: {:.2f} AU14: {:.2f} AU15: {:.2f} AU16: {:.2f} AU17: {:.2f} AU18: {:.2f} AU19: {:.2f} AU20: {:.2f} \
+     AU22: {:.2f} AU23: {:.2f} AU24: {:.2f} AU25: {:.2f} AU26: {:.2f} AU27: {:.2f} AU32: {:.2f} AU39: {:.2f} \
+      AUL1: {:.2f} AUR1: {:.2f} AUL2: {:.2f} AUR2: {:.2f} AUL4: {:.2f} AUR4: {:.2f} AUL6: {:.2f} AUR6: {:.2f} AUL10: {:.2f} \
+      AUR10: {:.2f} AUL12: {:.2f} AUR12: {:.2f} AUL14: {:.2f} AUR14: {:.2f}'.format(*[100.*x for x in list])}
+
+    AU_name_lists = ['Inner brow raiser',
+        'Outer brow raiser',
+        'Brow lowerer',
+        'Upper lid raiser',
+        'Cheek raiser',
+        'Lid tightener',
+        'Nose wrinkler',
+        'Upper lip raiser',
+        'Nasolabial deepener',
+        'Lip corner puller',
+        'Sharp lip puller',
+        'Dimpler',
+        'Lip corner depressor',
+        'Lower lip depressor',
+        'Chin raiser',
+        'Lip pucker',
+        'Tongue show',
+        'Lip stretcher',
+        'Lip funneler',
+        'Lip tightener',
+        'Lip pressor',
+        'Lips part',
+        'Jaw drop',
+        'Mouth stretch',
+        'Lip bite',
+        'Nostril dilator',
+        'Nostril compressor',
+        'Left Inner brow raiser',
+        'Right Inner brow raiser',
+        'Left Outer brow raiser',
+        'Right Outer brow raiser',
+        'Left Brow lowerer',
+        'Right Brow lowerer',
+        'Left Cheek raiser',
+        'Right Cheek raiser',
+        'Left Upper lip raiser',
+        'Right Upper lip raiser',
+        'Left Nasolabial deepener',
+        'Right Nasolabial deepener',
+        'Left Dimpler',
+        'Right Dimpler']
+    AU_indexs = np.where(pred>=thresh)[0]
+    AU_prediction = [AU_name_lists[i] for i in AU_indexs]
+    infostr_au_pred = {*AU_prediction}
+    return infostr_pred_probs, infostr_au_pred
+
+
 def adjust_learning_rate(optimizer, epoch, epochs, init_lr, iteration, num_iter):
 
     current_iter = iteration + epoch * num_iter

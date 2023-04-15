@@ -14,7 +14,7 @@ import yaml
 
 parser = argparse.ArgumentParser(description='PyTorch Training')
 # Datasets
-parser.add_argument('--dataset', default='AffWild2', type=str, choices=['BP4D','DISFA','hybrid','AffWild2', 'CASME2'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AffWild2")
+parser.add_argument('--dataset', default='AffWild2', type=str, choices=['BP4D','DISFA','hybrid','AffWild2', 'CASME2', 'RAFAU'], help="experiment dataset BP4D / DISFA / hybrid Dataset / AffWild2")
 
 # Param
 parser.add_argument('-b','--batch-size', default=64, type=int, metavar='N', help='mini-batch size (default: 64)')
@@ -110,6 +110,11 @@ def get_config():
             
     elif cfg.dataset == 'CASME2':
         with open('conf/CASME2_config.yaml', 'r') as f:
+            datasets_cfg = yaml.load(f)
+            datasets_cfg = edict(datasets_cfg)
+
+    elif cfg.dataset == 'RAFAU':
+        with open('conf/RAFAU_config.yaml', 'r') as f:
             datasets_cfg = yaml.load(f)
             datasets_cfg = edict(datasets_cfg)
     else:
