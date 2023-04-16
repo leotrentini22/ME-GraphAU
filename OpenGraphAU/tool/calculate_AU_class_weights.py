@@ -15,12 +15,7 @@ imgs_AUoccur = np.loadtxt(os.path.join(list_path_prefix, 'AffWild2_train_label.t
 AUoccur_rate = np.zeros((1, imgs_AUoccur.shape[1]))
 
 for i in range(imgs_AUoccur.shape[1]):
-    if float(sum(imgs_AUoccur[:,i]>=0)) > 0:
-        AUoccur_rate[0, i] = sum(imgs_AUoccur[:,i]>0) / float(sum(imgs_AUoccur[:,i]>=0))
-    else:
-        AUoccur_rate[0, i] = 0.0000001
-
-    # AUoccur_rate[0, i] = sum(imgs_AUoccur[:,i]>0) / float(imgs_AUoccur.shape[0])
+    AUoccur_rate[0, i] = sum(imgs_AUoccur[:,i]>0) / float(imgs_AUoccur.shape[0])
 
 
 AU_weight = 1.0 / AUoccur_rate
