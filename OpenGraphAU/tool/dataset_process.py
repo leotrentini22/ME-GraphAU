@@ -596,7 +596,7 @@ for img_path in img_path_list:
 
 img_path_list = []
 au_label_list = []
-for idx in range(3501,4906):
+for idx in range(3501,4700):
     test_au_item = label_lines[idx]
     items = test_au_item.split(' ')
     img_path = items[0]
