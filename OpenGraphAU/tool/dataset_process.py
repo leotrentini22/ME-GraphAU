@@ -515,7 +515,7 @@ with open('/work/vita/datasets/RAF-AU/RAFAU_label.txt', 'r') as f:
 
 img_path_list = []
 au_label_list = []
-for idx in range(0,3000):
+for idx in range(0,2000):
     train_au_item = label_lines[idx]
     items = train_au_item.split(' ')
     img_path = items[0]
@@ -555,7 +555,7 @@ for img_path in img_path_list:
 
 img_path_list = []
 au_label_list = []
-for idx in range(3001,3500):
+for idx in range(2001,2500):
     val_au_item = label_lines[idx]
     items = val_au_item.split(' ')
     img_path = items[0]
@@ -596,7 +596,7 @@ for img_path in img_path_list:
 
 img_path_list = []
 au_label_list = []
-for idx in range(3501,4700):
+for idx in range(2501,3700):
     test_au_item = label_lines[idx]
     items = test_au_item.split(' ')
     img_path = items[0]
