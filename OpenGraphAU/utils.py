@@ -277,7 +277,6 @@ def CASME2_infolist(list):
       AUR10: {:.2f} AUL12: {:.2f} AUR12: {:.2f} AUL14: {:.2f} AUR14: {:.2f}'.format(*[100.*x for x in list])}
     return infostr
 
-
 def CASME2_prediction_infolist(pred, thresh):
     {'AU1: {:.2f} AU2: {:.2f} AU4: {:.2f} AU5: {:.2f} AU6: {:.2f} AU7: {:.2f} AU9: {:.2f} AU10: {:.2f} \
      AU12: {:.2f} AU14: {:.2f} AU15: {:.2f} AU17: {:.2f} AU18: {:.2f} AU20: {:.2f} \
