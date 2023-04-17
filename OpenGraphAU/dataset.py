@@ -8,8 +8,8 @@ import os
 def make_dataset(image_list, label_list, au_relation=None):
     len_ = len(image_list)
     print(len_)
-    print(image_list.shape)
-    print(label_list.shape)
+    print(len(image_list))
+    print(len(label_list))
     if au_relation is not None:
         images = [(image_list[i].strip(),  label_list[i, :],au_relation[i,:]) for i in range(len_)]
     else:
