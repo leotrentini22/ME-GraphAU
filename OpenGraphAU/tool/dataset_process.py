@@ -637,6 +637,19 @@ for img_path in img_path_list:
 # #CASME2
 # print("processing CASME2------------------------------------------------------------")
 
+
+# da togliere se vogliamo trainare su tutti i dataset
+new_dataset_train_img_list = []
+new_dataset_val_img_list = []
+new_dataset_test_img_list = []
+
+new_dataset_train_label_list = []
+new_dataset_val_label_list = []
+new_dataset_test_label_list = []
+#fino a qui
+
+
+
 dataset_path_CASME='/work/vita/datasets/CASME2/Cropped/'
 df = pd.read_excel('/work/vita/datasets/CASME2/CASME2-coding-20140508.xlsx')
 list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/CASME2/list/'
@@ -758,6 +771,17 @@ new_dataset_test_label_list.append(CASME2_test_image_label)
 print("processing AffWild2------------------------------------------------------------")
 
 au_ids  = ['1', '2' ,'4', '6', '7', '10', '12', '15', '23', '24', '25', '26']
+
+
+# da togliere se vogliamo trainare su tutti i dataset
+new_dataset_train_img_list = []
+new_dataset_val_img_list = []
+new_dataset_test_img_list = []
+
+new_dataset_train_label_list = []
+new_dataset_val_label_list = []
+new_dataset_test_label_list = []
+#fino a qui
 
 
 list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/' #'/work/vita/datasets/Aff-Wild2/Third_ABAW_Annotations/AU_Detection_Challenge/' #'Datasets/hybrid_dataset/AffWild2/list'
