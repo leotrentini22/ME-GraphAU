@@ -8,5 +8,5 @@
 #SBATCH --partition=gpu
 
 cd tool/
-srun python dataset_process.py
+srun python calculate_AU_class_weights.py
 deactivate
