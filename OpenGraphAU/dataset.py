@@ -10,7 +10,7 @@ def make_dataset(image_list, label_list, flag=0, au_relation=None):
     print(len(image_list))
     print(len(label_list))
     if flag>0.5:
-        len_=(len_)/2  #this line here because in dataset_process it loaded twice the paths for rafau, so len(image_list)=2*len(label_list)
+        len_=int((len_)/2)  #this line here because in dataset_process it loaded twice the paths for rafau, so len(image_list)=2*len(label_list)
 
     if au_relation is not None:
         images = [(image_list[i].strip(),  label_list[i, :],au_relation[i,:]) for i in range(len_)]
