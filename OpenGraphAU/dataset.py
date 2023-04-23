@@ -5,11 +5,12 @@ from torch.utils.data import Dataset
 import os
 
 
-def make_dataset(image_list, label_list, au_relation=None):
+def make_dataset(image_list, label_list, au_relation=None, flag=0):
     len_ = len(image_list)
-    len_=len_/2
     print(len(image_list))
     print(len(label_list))
+    if flag==1:
+        len_=len_/2
     if au_relation is not None:
         images = [(image_list[i].strip(),  label_list[i, :],au_relation[i,:]) for i in range(len_)]
     else:
@@ -139,7 +140,8 @@ class RAFAU(Dataset):
             # img labels
             eval_label_list_path = os.path.join(root_path, 'list', 'RAF_AU_test_label.txt')
             eval_label_list = np.loadtxt(eval_label_list_path)  #  -> to change when we understand how to do it automatically
-            self.data_list = make_dataset(eval_image_list, eval_label_list)
+            flag=1
+            self.data_list = make_dataset(eval_image_list, eval_label_list,flag)
 
     def __getitem__(self, index):
         if self._stage == 2 and self._phase == 'train':
