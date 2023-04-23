@@ -9,8 +9,9 @@ def make_dataset(image_list, label_list, au_relation=None, flag=0):
     len_ = len(image_list)
     print(len(image_list))
     print(len(label_list))
-    if flag==1:
+    if flag>0.5:
         len_=len_/2
+        
     if au_relation is not None:
         images = [(image_list[i].strip(),  label_list[i, :],au_relation[i,:]) for i in range(len_)]
     else:
