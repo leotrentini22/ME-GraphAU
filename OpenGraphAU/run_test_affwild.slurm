@@ -7,5 +7,5 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=gpu
 
-srun python test.py  --resume /home/trentini/checkpoints/OpenGprahAU-ResNet50_first_stage.pth --draw_text
+srun python test.py  --resume results/OpenGprahAU-ResNet50_first_stage/bs_64_seed_0_lr_2e-05/best_model.pth --draw_text
 deactivate
