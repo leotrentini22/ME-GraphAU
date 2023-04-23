@@ -7,7 +7,7 @@ import os
 
 def make_dataset(image_list, label_list, au_relation=None):
     len_ = len(image_list)
-    print(len_)
+    len_=len_/2
     print(len(image_list))
     print(len(label_list))
     if au_relation is not None:

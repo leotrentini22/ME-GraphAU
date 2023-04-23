@@ -53,7 +53,7 @@ def test(net, test_loader, conf):
             #    outputs_filtered = outputs #[:, [0,1,2,3,4,5,6,7,9,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40]]
 
 
-            update_list = statistics(outputs_filtered, targets.detach(), 0.5)   # detach -> separate tensor from his computational graph
+            update_list = statistics(outputs, targets.detach(), 0.5)   # detach -> separate tensor from his computational graph
             statistics_list = update_statistics_list(statistics_list, update_list)
     mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
     mean_acc, acc_list = calc_acc(statistics_list)
