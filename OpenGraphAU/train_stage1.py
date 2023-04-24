@@ -74,7 +74,7 @@ def main(conf):
     train_weight = torch.from_numpy(np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt')))
     logging.info("[ val_data_num: {} ]".format(val_data_num))
 
-    net = MEFARG()#num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
+    net = MEFARG(num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
     # resume
     if conf.resume != '':
         logging.info("Resume form | {} ]".format(conf.resume))

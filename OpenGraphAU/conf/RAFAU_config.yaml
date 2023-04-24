@@ -1,3 +1,4 @@
 dataset_path: '/home/trentini/ME-GraphAU/OpenGraphAU/data/RAF-AU' 
-num_classes: 12
+num_main_classes: 27
+num_sub_classes: 14
 neighbor_num: 4
