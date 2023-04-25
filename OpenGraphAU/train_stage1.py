@@ -64,7 +64,7 @@ def val(net,val_loader,criterion):
 
 def main(conf):
 
-    dataset_info = AffWild2_infolist
+    dataset_info = hybrid_infolist #AffWild2_infolist
 
 
     start_epoch = 0
