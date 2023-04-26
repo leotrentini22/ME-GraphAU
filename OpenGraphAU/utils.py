@@ -77,6 +77,7 @@ def statistics(pred, y, thresh):
 
 def calc_f1_score(statistics_list, val_weight):
     f1_score_list = []
+    len_list=0
 
     for i in range(len(statistics_list)):
         TP = statistics_list[i]['TP']
@@ -87,9 +88,12 @@ def calc_f1_score(statistics_list, val_weight):
         recall = TP / (TP + FN + 1e-20)
         f1_score = 2 * precise * recall / (precise + recall + 1e-20)
 
-        f1_score = f1_score / val_weight[i]
-        f1_score_list.append(f1_score)
-    mean_f1_score = sum(f1_score_list) / len(f1_score_list)
+        if (val_weight[i]>0):
+            f1_score_list.append(f1_score)
+            len_list = len_list+1
+        else: 
+            f1_score_list.append(f1_score*0)
+    mean_f1_score = sum(f1_score_list) / len_list
 
     return mean_f1_score, f1_score_list
 
@@ -168,6 +172,7 @@ def draw_text(path, words, probs):
 
 def calc_acc(statistics_list, val_weight):
     acc_list = []
+    len_list = 0
 
     for i in range(len(statistics_list)):
         TP = statistics_list[i]['TP']
@@ -176,9 +181,12 @@ def calc_acc(statistics_list, val_weight):
         TN = statistics_list[i]['TN']
 
         acc = (TP + TN)/(TP + TN + FP + FN + 1e-20)
-        acc = acc / val_weight[i]
-        acc_list.append(acc)
-    mean_acc_score = sum(acc_list) / len(acc_list)
+        if (val_weight[i]>0):
+            acc_list.append(acc)
+            len_list = len_list+1
+        else: 
+            acc_list.append(acc*0)
+    mean_acc_score = sum(acc_list) / len_list
 
     return mean_acc_score, acc_list
 
