@@ -75,7 +75,7 @@ def statistics(pred, y, thresh):
     return statistics_list
 
 
-def calc_f1_score(statistics_list):
+def calc_f1_score(statistics_list, val_weight):
     f1_score_list = []
 
     for i in range(len(statistics_list)):
@@ -86,6 +86,8 @@ def calc_f1_score(statistics_list):
         precise = TP / (TP + FP + 1e-20)
         recall = TP / (TP + FN + 1e-20)
         f1_score = 2 * precise * recall / (precise + recall + 1e-20)
+
+        f1_score = f1_score / val_weight[i]
         f1_score_list.append(f1_score)
     mean_f1_score = sum(f1_score_list) / len(f1_score_list)
 
@@ -164,7 +166,7 @@ def draw_text(path, words, probs):
         img = cv2.putText(img,  AU_names[item] + ' -- AU' +AU_ids[item] +': {:.2f}'.format(probs[item]), (pos_x_, y), cv2.FONT_HERSHEY_SIMPLEX, round(img.shape[1] / 2800, 3), color, 2)
     return img
 
-def calc_acc(statistics_list):
+def calc_acc(statistics_list, val_weight):
     acc_list = []
 
     for i in range(len(statistics_list)):
@@ -174,6 +176,7 @@ def calc_acc(statistics_list):
         TN = statistics_list[i]['TN']
 
         acc = (TP + TN)/(TP + TN + FP + FN + 1e-20)
+        acc = acc / val_weight[i]
         acc_list.append(acc)
     mean_acc_score = sum(acc_list) / len(acc_list)
 

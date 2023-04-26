@@ -43,7 +43,7 @@ def train(conf,net,train_loader,optimizer,epoch,criterion):
 
 
 # Val
-def val(net,val_loader,criterion):
+def val(net,val_loader,criterion,train_weight):
     losses = AverageMeter()
     net.eval()
     statistics_list = None
@@ -57,8 +57,8 @@ def val(net,val_loader,criterion):
             losses.update(loss.data.item(), inputs.size(0))
             update_list = statistics(outputs, targets.detach(), 0.5)
             statistics_list = update_statistics_list(statistics_list, update_list)
-    mean_f1_score, f1_score_list = calc_f1_score(statistics_list)
-    mean_acc, acc_list = calc_acc(statistics_list)
+    mean_f1_score, f1_score_list = calc_f1_score(statistics_list, val_weight)
+    mean_acc, acc_list = calc_acc(statistics_list, val_weight)
     return losses.avg, mean_f1_score, f1_score_list, mean_acc, acc_list
 
 
@@ -71,7 +71,8 @@ def main(conf):
     best_val_mean_f1_score = 0
     # data
     train_loader,val_loader,train_data_num,val_data_num = get_dataloader(conf)
-    train_weight = torch.from_numpy(np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt')))
+    val_weight = np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt'))
+    train_weight = torch.from_numpy(val_weight)
     logging.info("[ val_data_num: {} ]".format(val_data_num))
 
     net = MEFARG(num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
@@ -94,7 +95,8 @@ def main(conf):
         lr = optimizer.param_groups[0]['lr']
         logging.info("Epoch: [{} | {} LR: {} ]".format(epoch + 1, conf.epochs, lr))
         train_loss = train(conf, net, train_loader, optimizer, epoch, criterion)
-        val_loss, val_mean_f1_score, val_f1_score, val_mean_acc, val_acc = val(net, val_loader, criterion)
+        val_weight = np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt'))
+        val_loss, val_mean_f1_score, val_f1_score, val_mean_acc, val_acc = val(net, val_loader, criterion, val_weight)
 
         # log
         infostr = {'Epoch:  {}   train_loss: {:.5f}  val_loss: {:.5f}  val_mean_f1_score {:.2f}, val_mean_acc {:.2f}'
