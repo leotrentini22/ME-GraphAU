@@ -75,7 +75,7 @@ def statistics(pred, y, thresh):
     return statistics_list
 
 
-def calc_f1_score(statistics_list, val_weight):
+def calc_f1_score(statistics_list, val_weight=None):
     f1_score_list = []
     len_list=0
 
@@ -87,12 +87,15 @@ def calc_f1_score(statistics_list, val_weight):
         precise = TP / (TP + FP + 1e-20)
         recall = TP / (TP + FN + 1e-20)
         f1_score = 2 * precise * recall / (precise + recall + 1e-20)
-
-        if (val_weight[i]>0):
+        if val_weight != None:
+            if (val_weight[i]>0):
+                f1_score_list.append(f1_score)
+                len_list = len_list+1
+            else: 
+                f1_score_list.append(f1_score*0)
+        else:
             f1_score_list.append(f1_score)
             len_list = len_list+1
-        else: 
-            f1_score_list.append(f1_score*0)
     mean_f1_score = sum(f1_score_list) / len_list
 
     return mean_f1_score, f1_score_list
@@ -170,7 +173,7 @@ def draw_text(path, words, probs):
         img = cv2.putText(img,  AU_names[item] + ' -- AU' +AU_ids[item] +': {:.2f}'.format(probs[item]), (pos_x_, y), cv2.FONT_HERSHEY_SIMPLEX, round(img.shape[1] / 2800, 3), color, 2)
     return img
 
-def calc_acc(statistics_list, val_weight):
+def calc_acc(statistics_list, val_weight=None):
     acc_list = []
     len_list = 0
 
@@ -181,11 +184,15 @@ def calc_acc(statistics_list, val_weight):
         TN = statistics_list[i]['TN']
 
         acc = (TP + TN)/(TP + TN + FP + FN + 1e-20)
-        if (val_weight[i]>0):
+        if val_weight != None:
+            if (val_weight[i]>0):
+                acc_list.append(acc)
+                len_list = len_list+1
+            else: 
+                acc_list.append(acc*0)
+        else:
             acc_list.append(acc)
             len_list = len_list+1
-        else: 
-            acc_list.append(acc*0)
     mean_acc_score = sum(acc_list) / len_list
 
     return mean_acc_score, acc_list

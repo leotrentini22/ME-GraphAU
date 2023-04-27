@@ -95,7 +95,6 @@ def main(conf):
         lr = optimizer.param_groups[0]['lr']
         logging.info("Epoch: [{} | {} LR: {} ]".format(epoch + 1, conf.epochs, lr))
         train_loss = train(conf, net, train_loader, optimizer, epoch, criterion)
-        val_weight = np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt'))
         val_loss, val_mean_f1_score, val_f1_score, val_mean_acc, val_acc = val(net, val_loader, criterion, val_weight)
 
         # log
