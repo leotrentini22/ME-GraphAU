@@ -87,7 +87,7 @@ def calc_f1_score(statistics_list, val_weight=None):
         precise = TP / (TP + FP + 1e-20)
         recall = TP / (TP + FN + 1e-20)
         f1_score = 2 * precise * recall / (precise + recall + 1e-20)
-        if val_weight != None:
+        if val_weight is not None:
             if (val_weight[i]>0):
                 f1_score_list.append(f1_score)
                 len_list = len_list+1
@@ -184,7 +184,7 @@ def calc_acc(statistics_list, val_weight=None):
         TN = statistics_list[i]['TN']
 
         acc = (TP + TN)/(TP + TN + FP + FN + 1e-20)
-        if val_weight != None:
+        if val_weight is not None:
             if (val_weight[i]>0):
                 acc_list.append(acc)
                 len_list = len_list+1
