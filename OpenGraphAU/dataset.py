@@ -7,8 +7,10 @@ import os
 
 def make_dataset(image_list, label_list, flag=0, au_relation=None):
     len_ = len(image_list)
-    print(len(image_list))
-    print(len(label_list))
+
+
+    ## flag inserted because there were problems processing the rafau (files were downloaded twice) --> need to check why
+    ## if flag == 1 (i.e. we're using rafau), the real length is half of the length calculated before
     if flag>0.5:
         len_=int((len_)/2)  #this line here because in dataset_process it loaded twice the paths for rafau, so len(image_list)=2*len(label_list)
 

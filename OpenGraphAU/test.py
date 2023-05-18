@@ -58,7 +58,7 @@ def test(net, test_loader, conf):
 
 def main(conf):
     if conf.dataset == 'AffWild2':
-        dataset_info = AffWild2_infolist  # function in 'utils', different from 'demo' because we don't need to output AUs, we need to eval accuracy
+        dataset_info = hybrid_infolist  #it works better
     elif conf.dataset == 'CASME2':
         dataset_info = CASME2_infolist
     elif conf.dataset == 'RAFAU':
@@ -67,7 +67,7 @@ def main(conf):
     # data     
     test_loader, test_data_num = get_dataloader(conf)
     logging.info("[ test_data_num: {} ]".format( test_data_num))
-    net = MEFARG() #num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
+    net = MEFARG(num_main_classes=conf.num_main_classes, num_sub_classes=conf.num_sub_classes, backbone=conf.arc, neighbor_num=conf.neighbor_num, metric=conf.metric)
 
     # resume
     if conf.resume != '':

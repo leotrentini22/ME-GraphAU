@@ -1,4 +1,4 @@
-dataset_path: 'data/Hybrid'
+dataset_path: '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2'
 num_main_classes: 27
 num_sub_classes: 14
 neighbor_num: 4

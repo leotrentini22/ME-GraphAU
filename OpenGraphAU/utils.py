@@ -153,11 +153,7 @@ def draw_text(path, words, probs):
     pos_x_ =  img.shape[1]  * 3 // 2 - img.shape[1] // 100
 
     img = cv2.copyMakeBorder(img, 0,0,0,img.shape[1], cv2.BORDER_CONSTANT, value=(255,255,255))
-    # num_aus = len(words)
-    # for i, item in enumerate(words):
-    #     y = pos_y + (i * img.shape[0] // 17 )
-    #     img = cv2.putText(img, str(item), (pos_x, y), cv2.FONT_HERSHEY_SIMPLEX, round(img.shape[1] / 2048, 3), (0,0,255), 2)
-    # pos_y = pos_y + (num_aus * img.shape[0] // 17 )
+
     for i, item in enumerate(range(21)):
         y = pos_y  + (i * img.shape[0] // 22)
         color = (0,0,0)

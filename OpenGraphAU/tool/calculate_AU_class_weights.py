@@ -1,7 +1,10 @@
 import numpy as np
 import os
 
-list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/'
+from dataset_process import *
+
+name_dataset = 'affwild'
+list_path_prefix, img_path_vita, label_root, train_path, val_path, test_path = set_your_paths(name_dataset)
 
 '''
 example of content in 'AffWild2_train_label_fold1.txt':
