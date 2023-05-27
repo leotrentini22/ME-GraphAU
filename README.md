@@ -31,7 +31,7 @@ Data and Data Prepareing Tools
 The Dataset we used:
   * [AffWild2](https://ibug.doc.ic.ac.uk/resources/aff-wild2/)
 
-We started also to implement also on these Datasets:
+We started to implement also on these Datasets:
   * [CASMEII](http://casme.psych.ac.cn/casme/e2)
   * [RAF-AU](http://whdeng.cn/RAF/model3.html)
 
