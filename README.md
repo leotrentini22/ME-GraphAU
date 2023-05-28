@@ -9,12 +9,10 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#General-Information">General Information</a></li>
-    <li><a href="#Our-Team">Our Team</a></li>
-    <li><a href="#Data">Data</a></li>
-    <li><a href="#Structure">Structure</a></li>
-    <li><a href="#Documentation">Documentation</a></li>
-    <li><a href="#Usage">Usage</a></li>
-    <li><a href="#Results">Results</a></li>
+    <li><a href="#Requirements">Requirements</a></li>
+    <li><a href="#Data-and-preprocessing">Data and preprocessing</a></li>
+    <li><a href="#Training-and-Testing">Training and Testing</a></li>
+    <li><a href="#Main-Results">Main Results</a></li>
   </ol>
 </details>
 
@@ -28,11 +26,10 @@ The repository contains the code and report for the first part of the Facial Act
 > [[Paper]](https://arxiv.org/abs/2205.01782) [[Project]](https://www.chengluo.cc/projects/ME-AU/)
 > 
 
+
 ## Requirements
-=
 - Python 3
 - PyTorch
-
 
 - Check the required python packages in `requirements.txt`.
 ```
@@ -40,7 +37,6 @@ pip install -r requirements.txt
 ```
 
 ## Data and preprocessing
-
 The Dataset we used:
   * [AffWild2](https://ibug.doc.ic.ac.uk/resources/aff-wild2/)
 
@@ -60,18 +56,11 @@ We provide tools for prepareing data in ```tool/```.
    python dataset_process.py
    python calculate_AU_class_weights.py
    ```
-## Training with ImageNet pre-trained models
 
-Make sure that you download the ImageNet pre-trained models to `checkpoints/` (or you alter the checkpoint path setting in `models/resnet.py` or `models/swin_transformer.py`)
-
-The download links of pre-trained models are in `checkpoints/checkpoints.txt`
-
-Thanks to the offical Pytorch and [Swin Transformer](https://github.com/microsoft/Swin-Transformer)
-
+4. You should also download the ImageNet pre-trained models to `checkpoints/` (or you alter the checkpoint path setting in `models/resnet.py` or `models/swin_transformer.py`). The download links of pre-trained models are in `checkpoints/checkpoints.txt`
 
 ## Training and Testing
-
-- to train the first stage of our approach (using ResNet-50 as backbone) on AffWild2 Dataset, run:
+- to train the first stage of our approach (using a pretrainedResNet-50 as backbone) on AffWild2 Dataset, run:
 ```
 python train_stage1.py --dataset AffWild2 --arc resnet50 --exp-name OpenGprahAU-ResNet50_first_stage -b 64 -lr 0.00002
 ```
