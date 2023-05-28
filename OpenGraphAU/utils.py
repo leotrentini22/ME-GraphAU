@@ -189,7 +189,7 @@ def calc_acc(statistics_list, val_weight=None):
         else:
             acc_list.append(acc)
             len_list = len_list+1
-    mean_acc_score = sum(acc_list) / len_list
+    mean_acc_score = sum(acc_list) / 12 #len_list
 
     return mean_acc_score, acc_list
 
