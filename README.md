@@ -86,9 +86,9 @@ As a final result, we obtained an average f1-score of **48.23** on the test set
 
 **AffWild2**
 
-|   Method  | AU1 | AU2 | AU4 | AU6 | AU7 | AU10 | AU12 | AU15 | AU15 | AU23 | AU24 | AU25 | AU26 | Avg. |
+|   Method  | AU1 | AU2 | AU4 | AU6 | AU7 | AU10 | AU12 | AU15 | AU23 | AU24 | AU25 | AU26 | Avg. |
 | :-------: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-|   Ours (ResNet-50) | 51.27 | 26.72 | 48.10 | 57.52 | 73.25 | 73.19 | 69.06 | 25.27 | 13.54 | 7.81 | 83.96 | 22.31 | 48.28 |
+|   Ours (ResNet-50) | 56.35 | 35.54 | 49.45 | 58.97 | 73.61 | 74.03 | 69.59 | 32.47 | 14.76 | 8.77 | 84.09 | 23.97 | 48.47 |
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
