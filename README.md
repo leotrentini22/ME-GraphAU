@@ -18,7 +18,7 @@
 
 ## General Information
 
-The repository contains the code and report for the first part of the Facial Action Unit Recognition project. In particular, this is an adaption to our datasets of the paper  
+The repository contains the code for the first part of the Facial Action Unit Recognition project. In particular, this is an adaption to our datasets of the paper  
 > 
 > **"Learning Multi-dimensional Edge Feature-based AU Relation Graph for Facial Action Unit Recognition"**, 
 > **IJCAI-ECAI 2022**
