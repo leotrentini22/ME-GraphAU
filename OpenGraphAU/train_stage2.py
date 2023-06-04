@@ -69,14 +69,15 @@ def val(net, val_loader, criterion):
 
 
 def main(conf):
-    idataset_info = hybrid_infolist #AffWild2_infolist
+    dataset_info = hybrid_infolist #AffWild2_infolist
 
     start_epoch = 0
     # data
     train_loader,val_loader,train_data_num,val_data_num = get_dataloader(conf)
-    train_weight = torch.from_numpy(np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_weight_fold'+str(conf.fold)+'.txt')))
+    val_weight = np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt'))
+    train_weight = torch.from_numpy(val_weight)
     logging.info("Fold: [{} | {}  val_data_num: {} ]".format(conf.fold + 1, conf.N_fold, val_data_num))
-    net = MEFARG(num_classes=conf.num_classes, backbone=conf.arc)
+    net = MEFARG(num_main_classes = 41, backbone=conf.arc)
 
     # resume
     if conf.resume != '':
