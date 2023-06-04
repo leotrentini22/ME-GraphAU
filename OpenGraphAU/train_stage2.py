@@ -76,7 +76,7 @@ def main(conf):
     train_loader,val_loader,train_data_num,val_data_num = get_dataloader(conf)
     val_weight = np.loadtxt(os.path.join(conf.dataset_path, 'list', conf.dataset+'_train_weight.txt'))
     train_weight = torch.from_numpy(val_weight)
-    logging.info("Fold: [{} | {}  val_data_num: {} ]".format(conf.fold + 1, conf.N_fold, val_data_num))
+    logging.info("[ val_data_num: {} ]".format(val_data_num))
     net = MEFARG(num_main_classes = 41, backbone=conf.arc)
 
     # resume
@@ -119,14 +119,14 @@ def main(conf):
                 'state_dict': net.state_dict(),
                 'optimizer': optimizer.state_dict(),
             }
-            torch.save(checkpoint, os.path.join(conf['outdir'], 'epoch' + str(epoch + 1) + '_model_fold' + str(conf.fold + 1) + '.pth'))
+            torch.save(checkpoint, os.path.join(conf['outdir'], 'best_model.pth'))
 
         checkpoint = {
             'epoch': epoch,
             'state_dict': net.state_dict(),
             'optimizer': optimizer.state_dict(),
         }
-        torch.save(checkpoint, os.path.join(conf['outdir'], 'cur_model_fold' + str(conf.fold + 1) + '.pth'))
+        torch.save(checkpoint, os.path.join(conf['outdir'], 'cur_model.pth'))
 
 
 # ---------------------------------------------------------------------------------

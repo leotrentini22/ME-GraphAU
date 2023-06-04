@@ -57,8 +57,8 @@ def val(net,val_loader,criterion,train_weight):
             losses.update(loss.data.item(), inputs.size(0))
             update_list = statistics(outputs, targets.detach(), 0.5)
             statistics_list = update_statistics_list(statistics_list, update_list)
-    mean_f1_score, f1_score_list = calc_f1_score(statistics_list, val_weight)
-    mean_acc, acc_list = calc_acc(statistics_list, val_weight)
+    mean_f1_score, f1_score_list = calc_f1_score(statistics_list, train_weight)
+    mean_acc, acc_list = calc_acc(statistics_list, train_weight)
     return losses.avg, mean_f1_score, f1_score_list, mean_acc, acc_list
 
 
