@@ -55,7 +55,7 @@ class AffWild2(Dataset):
             if self._stage == 2:
                 au_relation_list_path = os.path.join(root_path, 'list', 'AffWild2_train_AU_relation.txt')
                 au_relation_list = np.loadtxt(au_relation_list_path)
-                self.data_list = make_dataset(train_image_list, train_label_list, au_relation_list)
+                self.data_list = make_dataset(train_image_list, train_label_list, 0, au_relation_list)
             else:
                 self.data_list = make_dataset(train_image_list, train_label_list)
         elif self._phase == 'val':
