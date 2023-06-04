@@ -53,7 +53,7 @@ def set_your_paths(name_dataset):
     elif name_dataset == 'affwild':
 
         # list_path_prefix -> path of the folder where there will be stored files with the list of paths of the images and the list of AUs
-        list_path_prefix = '/home/trentini/face-skeleton-detection/data/AffWild2/list/' 
+        list_path_prefix = '/home/trentini/ME-GraphAU/OpenGraphAU/data/AffWild2/list/' 
 
 
         # PATH OF THE DATASET

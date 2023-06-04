@@ -8,8 +8,8 @@ list_path_prefix, img_path_vita, label_root, train_path, val_path, test_path = s
 class_num = 12
 
 
-read_list_name = 'AffWild2_train_label'+'.txt'
-save_list_name = 'AffWild2_train_AU_relation'+'.txt'
+read_list_name = 'AffWild2_train_label.txt'
+save_list_name = 'AffWild2_train_AU_relation.txt'
 aus = np.loadtxt(os.path.join(list_path_prefix,read_list_name))
 le = aus.shape[0]
 new_aus = np.zeros((le, class_num * class_num))
